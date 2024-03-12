@@ -1,20 +1,23 @@
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g 
+CFLAGS = -no-pie -Wall -Wextra -Werror -g 
+MLXFLAG = -L/home/sgalli/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm
 NAME = cube3D
 
 SRC = 	       main.c \
-	 	 help/error.c \
-	libft/ft_strcmp.c \
+		  help/free.c \
+       	   help/key.c \
+		 help/error.c \
+    libft/ft_strcmp.c \
 	libft/ft_substr.c \
 	libft/ft_strlen.c \
-   libft/ft_strlcpy.c 
+   libft/ft_strlcpy.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 		@echo Linking... $(NAME)
-		$(CC) $(OBJ) -o $(NAME) $(CFLAGS)
+		$(CC) $(OBJ) -o $(NAME) $(CFLAGS) $(MLXFLAG)
 
 %.o : %.c
 	@echo Compiling $<...

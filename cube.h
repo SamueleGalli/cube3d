@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/11 17:08:48 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/12 17:46:56 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_general
 	int		i;
 	char	**v;
 	void	*win;
-}	t_general;
+}			t_general;
 
 char		*ft_substr(char *s, int start, int len);
 
@@ -31,5 +31,7 @@ int			ft_strcmp(char *s, char *s2);
 int			check_error(char **v, int i);
 int			ft_strlcpy(char *dest, char *src, int size);
 int			ft_strlen(char *s);
+int			manage_key(int key, t_general *g);
+int			end_program(t_general *g);
 
 #endif

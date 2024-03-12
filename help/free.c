@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/12 17:44:53 by sgalli           ###   ########.fr       */
+/*   Created: 2024/03/12 17:42:24 by sgalli            #+#    #+#             */
+/*   Updated: 2024/03/12 17:46:47 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube.h"
+#include "../cube.h"
 
-void	start_cube(t_general g)
+int    end_program(t_general *g)
 {
-	g.mlx = mlx_init();
-	g.win = mlx_new_window(g.mlx, 800, 600, "cube3D");
-	mlx_hook(g.win, 17, 1L<<17, end_program, &g);
-	mlx_key_hook(g.win, manage_key, &g);
-	mlx_loop(g.mlx);
-}
-
-int	main(int i, char **v)
-{
-	t_general	g;
-
-	g.i = i;
-	g.v = v;
-	if (check_error(g.v, g.i) == 1)
-		exit(1);
-	start_cube(g);
+        mlx_destroy_window(g->mlx, g->win);
+        mlx_destroy_display(g->mlx);
+        free(g->mlx);
+        exit(0);
 }
