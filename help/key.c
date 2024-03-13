@@ -6,15 +6,25 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/12 17:42:16 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/13 12:16:46 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-int    manage_key(int key, t_general *g)
+/*
+A = 97
+B = 100
+W = 119
+S = 115
+<- = 65361
+-> = 65363
+*/
+
+int	manage_key(int key, t_general *g)
 {
-    if (key == 65307)
-        end_program(g);
-    return (1);
+	printf("key = %d\n", key);
+	if (key == 65307)
+		end_program(g);
+	return (1);
 }

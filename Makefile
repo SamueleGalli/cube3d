@@ -1,9 +1,12 @@
 CC = gcc
-CFLAGS = -no-pie -Wall -Wextra -Werror -g 
-MLXFLAG = -L/home/sgalli/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm
+CFLAGS = -Wall -Wextra -Werror -g 
+#MLXFLAG = -L/home/sgalli/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm (path casa)
+MLXFLAG = -L/nfs/homes/sgalli/sgoinfre/progetti/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm
+
 NAME = cube3D
 
 SRC = 	       main.c \
+		 start_game.c \
 		  help/free.c \
        	   help/key.c \
 		 help/error.c \

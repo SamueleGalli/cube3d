@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/12 17:46:56 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:41:24 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 # include "minilibx-linux/mlx.h"
 # include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
 # include <stdlib.h>
+# include <sys/types.h>
 
 typedef struct s_general
 {
@@ -23,6 +26,7 @@ typedef struct s_general
 	int		i;
 	char	**v;
 	void	*win;
+	int		fd;
 }			t_general;
 
 char		*ft_substr(char *s, int start, int len);
@@ -33,5 +37,7 @@ int			ft_strlcpy(char *dest, char *src, int size);
 int			ft_strlen(char *s);
 int			manage_key(int key, t_general *g);
 int			end_program(t_general *g);
+
+void		init_game(t_general g);
 
 #endif
