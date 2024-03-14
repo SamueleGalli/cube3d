@@ -1,29 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key.c                                              :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/14 10:30:46 by sgalli           ###   ########.fr       */
+/*   Created: 2024/03/14 11:39:49 by sgalli            #+#    #+#             */
+/*   Updated: 2024/03/14 11:43:36 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../cube.h"
-
-/*
-A = 97
-B = 100
-W = 119
-S = 115
-<- = 65361
--> = 65363
-*/
-
-int	manage_key(int key, t_general *g)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	if (key == 65307)
-		end_program(g);
-	return (1);
+	char	*p;
+
+	p = dest;
+	while (*dest != '\0')
+	{
+		*dest++ = *src++;
+	}
+	return (p);
 }

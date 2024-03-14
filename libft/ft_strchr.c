@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key.c                                              :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/14 10:30:46 by sgalli           ###   ########.fr       */
+/*   Created: 2022/10/04 15:20:44 by sgalli            #+#    #+#             */
+/*   Updated: 2024/03/14 11:18:12 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-/*
-A = 97
-B = 100
-W = 119
-S = 115
-<- = 65361
--> = 65363
-*/
-
-int	manage_key(int key, t_general *g)
+char	*ft_strchr(const char *s, int c)
 {
-	if (key == 65307)
-		end_program(g);
-	return (1);
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == (unsigned char)c)
+			return ((char *)s + i);
+		i++;
+	}
+	if (s[i] == (unsigned char)c)
+	{
+		return ((char *)s + i);
+	}
+	return (NULL);
 }
