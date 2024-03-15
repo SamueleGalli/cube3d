@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/15 14:39:21 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/15 14:53:06 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,13 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
+
+/*
+N = NORD
+S = SUD
+E = EST
+W = WEST
+*/
 
 typedef struct s_general
 {
