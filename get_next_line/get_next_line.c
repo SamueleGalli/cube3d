@@ -5,84 +5,104 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 11:12:20 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/14 14:40:26 by sgalli           ###   ########.fr       */
+/*   Created: 2022/10/24 14:42:21 by sgalli            #+#    #+#             */
+/*   Updated: 2024/03/15 12:49:47 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
+char	*ft_get_line(char *save)
+{
+	int		r;
+	char	*stri;
+
+	r = 0;
+	if (save[r] == '\0')
+		return (NULL);
+	while (save[r] != '\0' && save[r] != '\n')
+		r++;
+	if (save[r] == '\n')
+		r++;
+	stri = (char *)malloc(sizeof(char) * (r + 1));
+	r = 0;
+	while (save[r] != '\0' && save[r] != '\n')
+	{
+		stri[r] = save[r];
+		r++;
+	}
+	if (save[r] == '\n')
+	{
+		stri[r] = save[r];
+		r++;
+	}
+	stri[r] = '\0';
+	return (stri);
+}
+
+char	*ft_save(char *save)
+{
+	int		p;
+	int		o;
+	char	*st;
+
+	p = 0;
+	while (save[p] != '\0' && save[p] != '\n')
+		p++;
+	if (save[p] == '\0')
+	{
+		free(save);
+		return (NULL);
+	}
+	st = (char *)malloc((sizeof(char) *(ft_strlen_g(save) - p + 1)));
+	if (st == NULL)
+		return (NULL);
+	p++;
+	o = 0;
+	while (save[p] != '\0')
+	{
+		st[o++] = save[p++];
+	}
+	st[o] = '\0';
+	free(save);
+	return (st);
+}
+
+char	*ft_read_n_save(int fd, char *save)
+{
+	char	*buff;
+	int		readb;
+
+	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (buff == NULL)
+		return (NULL);
+	readb = 1;
+	while (ft_strchr(save, '\n') == 0 && readb != 0)
+	{
+		readb = read(fd, buff, BUFFER_SIZE);
+		if (readb == -1)
+		{
+			free(buff);
+			return (NULL);
+		}
+		buff[readb] = '\0';
+		save = ft_strjoin(save, buff);
+	}
+	free(buff);
+	return (save);
+}
+
 char	*get_next_line(int fd)
 {
-	ssize_t	line_len;
-	int		found_newline;
-	char	*line;
+	char		*line;
+	static char	*save;
 
-	line_len = 0;
-	found_newline = 0;
-	line = read_from_fd(fd, &line_len, &found_newline);
-	if (line == NULL || (!found_newline && line_len == 0))
-	{
-		free(line);
+	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	}
-	if (line_len == 0 && line != NULL)
-	{
-		free(line);
+	save = ft_read_n_save(fd, save);
+	if (save == NULL)
 		return (NULL);
-	}
+	line = ft_get_line(save);
+	save = ft_save(save);
 	return (line);
-}
-
-static char	*read_from_fd(int fd, ssize_t *line_len, int *found_newline)
-{
-	char	buffer[BUFFER_SIZE + 1];
-	ssize_t	bytes_read;
-	char	*line;
-	char	*newline_ptr;
-
-	line = NULL;
-	bytes_read = read(fd, buffer, BUFFER_SIZE);
-	while (bytes_read > 0)
-	{
-		buffer[bytes_read] = '\0';
-		newline_ptr = ft_strchr(buffer, '\n');
-		if (newline_ptr != NULL)
-		{
-			*line_len += newline_ptr - buffer;
-			*found_newline = 1;
-			break ;
-		}
-		else
-			*line_len += bytes_read;
-		line = append_buffer(line, buffer, bytes_read, line_len);
-		if (line == NULL)
-			return (NULL);
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-	}
-	return (line);
-}
-
-static char	*append_buffer(char *line, char *buffer, ssize_t bytes_read,
-		ssize_t *line_len)
-{
-	char	*tmp;
-
-	tmp = malloc(*line_len + 1);
-	if (!tmp)
-	{
-		free(line);
-		return (NULL);
-	}
-	if (line)
-	{
-		ft_strcpy(tmp, line);
-		ft_strcat(tmp, buffer);
-		free(line);
-	}
-	else
-	{
-		ft_strcpy(tmp, buffer);
-	}
-	return (tmp);
 }

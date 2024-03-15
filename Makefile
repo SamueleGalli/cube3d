@@ -1,4 +1,4 @@
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -g 
 #MLXFLAG = -L/home/sgalli/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm (path casa)
 MLXFLAG = -L/nfs/homes/sgalli/sgoinfre/progetti/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm
@@ -10,14 +10,14 @@ SRC = 	main.c \
 			help/free.c \
        		help/key.c \
 			help/error.c \
+				libft/ft_strdup.c \
+			    libft/ft_strlcpy.c \
     		    libft/ft_strcmp.c \
 			    libft/ft_substr.c \
 			    libft/ft_strlen.c \
-   		        libft/ft_strlcpy.c \
-				libft/ft_strchr.c \
-				libft/ft_strcat.c \
 				libft/ft_strcpy.c \
-				get_next_line/get_next_line.c
+				get_next_line/get_next_line.c \
+				get_next_line/get_next_line_utils.c 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
