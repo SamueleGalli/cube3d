@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/15 12:57:04 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/15 14:39:21 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ typedef struct s_general
 	int		fd;
 }			t_general;
 
-void		init_game(t_general g);
+void		init_game(t_general *g);
+void		alloc_cube(t_general *g, int j);
+void		alloc_map(t_general *g, int i);
 
 size_t		ft_strlen_g(const char *s);
 
@@ -47,6 +49,7 @@ int			ft_strlcpy(char *dest, char *src, int size);
 int			ft_strlen(char *s);
 int			manage_key(int key, t_general *g);
 int			end_program(t_general *g);
+int			getting_line(t_general *g, int i);
 
 char		*ft_strdup(char *s);
 char		*ft_substr(char *s, int start, int len);
