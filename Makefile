@@ -6,8 +6,10 @@ MLXFLAG = -L/nfs/homes/sgalli/sgoinfre/progetti/cube3d/minilibx-linux -lmlx -lX1
 NAME = cube3D
 
 SRC = 	main.c \
-		alloc_map.c \
-		start_game.c \
+			help/ausiliary.c \
+			help/valid_map.c \
+			help/alloc_map.c \
+			help/start_game.c \
 			help/free.c \
        		help/key.c \
 			help/error.c \

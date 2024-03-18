@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/15 14:44:35 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/18 12:22:24 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	main(int i, char **v)
 	g->i = i;
 	g->v = v;
 	g->l = NULL;
+	g->tmp = NULL;
 	g->cubed = NULL;
 	if (check_error(g->v, g->i) == 1)
 	{

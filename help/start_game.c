@@ -1,42 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 17:42:24 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/18 12:23:47 by sgalli           ###   ########.fr       */
+/*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
+/*   Updated: 2024/03/18 11:22:02 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-void	free_matrix(char **mat)
+void	init_game(t_general *g)
 {
 	int	i;
 
-	i = 0;
-	while (mat[i] != 0)
+	g->fd = open(g->v[1], O_RDONLY);
+	if (g->fd < 0)
 	{
-		free(mat[i]);
-		i++;
+		printf("invalid map.cub try another\n");
+		if (g != 0)
+			free(g);
+		exit(0);
 	}
-	free(mat);
-}
-
-int	end_program(t_general *g)
-{
-	if (g->l != NULL)
-		free(g->l);
-	if (g->cubed != 0)
-		free_matrix(g->cubed);
-	if (g->tmp != 0)
-		free_matrix(g->tmp);
-	mlx_destroy_window(g->mlx, g->win);
-	mlx_destroy_display(g->mlx);
-	free(g->mlx);
-	if (g != 0)
-		free(g);
-	exit(0);
+	i = getting_line(g, 0);
+	g->fd = open(g->v[1], O_RDONLY);
+	alloc_map(g, i);
+	if (is_valid(g) == 0)
+	{
+		printf("map not closed by walls");
+		end_program(g);
+	}
 }

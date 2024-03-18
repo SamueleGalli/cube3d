@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/15 14:39:21 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/18 12:30:18 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,16 @@
 # include <sys/uio.h>
 # include <unistd.h>
 
+/*
+N = NORD
+S = SUD
+E = EST
+W = WEST
+*/
+
 typedef struct s_general
 {
+	char	**tmp;
 	char	**v;
 	char	**cubed;
 	char	*l;
@@ -40,6 +48,7 @@ typedef struct s_general
 void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);
+void		copy_cubed(t_general *g, int i, int j);
 
 size_t		ft_strlen_g(const char *s);
 
@@ -50,8 +59,9 @@ int			ft_strlen(char *s);
 int			manage_key(int key, t_general *g);
 int			end_program(t_general *g);
 int			getting_line(t_general *g, int i);
+int			is_valid(t_general *g);
+int			end_mat(char **mat);
 
-char		*ft_strdup(char *s);
 char		*ft_substr(char *s, int start, int len);
 char		*get_next_line(int fd);
 char		*ft_strjoin(char *s1, char *b);
