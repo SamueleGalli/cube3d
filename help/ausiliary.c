@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:36:48 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/18 12:37:06 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/18 14:27:00 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	copy_cubed(t_general *g, int i, int j)
 		while (g->cubed[i][j] != 0)
 		{
 			g->tmp[i][j] = g->cubed[i][j];
-			printf("g->tmp[i][j] = %c\n" ,g->tmp[i][j]);
 			j++;
 		}
 		g->tmp[i][j] = 0;
@@ -44,7 +43,6 @@ void	copy_cubed(t_general *g, int i, int j)
 
 void	recopy(t_general *g, int i, int j)
 {
-	//free_mat()
 	g->tmp = (char **)malloc(sizeof(char *) * (end_mat(g->cubed) + 1));
 	while (g->cubed[i] != 0)
 	{
@@ -52,7 +50,6 @@ void	recopy(t_general *g, int i, int j)
 		while (g->cubed[i][j] != 0)
 		{
 			g->tmp[i][j] = g->cubed[i][j];
-			printf("g->tmp[i][j] = %c\n" ,g->tmp[i][j]);
 			j++;
 		}
 		g->tmp[i][j] = 0;
