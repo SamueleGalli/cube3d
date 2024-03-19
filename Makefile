@@ -1,7 +1,8 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g 
-#MLXFLAG = -L/home/sgalli/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm (path casa)
-MLXFLAG = -L/nfs/homes/sgalli/sgoinfre/progetti/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm
+#MLXFLAG = -L/nfs/homes/sgalli/sgoinfre/progetti/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm
+MLXFLAG = -L/home/sgalli/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm
+#(path casa)
 
 NAME = cube3D
 

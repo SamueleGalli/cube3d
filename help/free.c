@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:42:24 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/18 12:23:47 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:59:31 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,11 @@ int	end_program(t_general *g)
 		free_matrix(g->cubed);
 	if (g->tmp != 0)
 		free_matrix(g->tmp);
-	mlx_destroy_window(g->mlx, g->win);
-	mlx_destroy_display(g->mlx);
+	if (g->mlx != 0 && g->win != 0)
+	{
+		mlx_destroy_window(g->mlx, g->win);
+		mlx_destroy_display(g->mlx);
+	}
 	free(g->mlx);
 	if (g != 0)
 		free(g);

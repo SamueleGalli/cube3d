@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/18 11:22:26 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/19 16:16:13 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	alloc_map(t_general *g, int i)
 			break ;
 		g->cubed[j] = (char *)malloc(sizeof(char) * (ft_strlen(g->l) + 1));
 		alloc_cube(g, j);
-		printf("cube =%s\n", g->cubed[j]);
 		free(g->l);
 		j++;
 	}

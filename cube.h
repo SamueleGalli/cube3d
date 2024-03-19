@@ -6,8 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/03/18 14:24:30 by sgalli           ###   ########.fr       */
-/*   Updated: 2024/03/15 14:53:06 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/03/19 17:01:41 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +49,8 @@ void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);
 void		copy_cubed(t_general *g, int i, int j);
+void		free_matrix(char **mat);
+void		recopy(t_general *g, int i, int j);
 
 size_t		ft_strlen_g(const char *s);
 
@@ -70,5 +71,4 @@ char		*ft_strchr(char *t, int c);
 char		*ft_get_line(char *save);
 char		*ft_save(char *save);
 char		*ft_read_n_save(int fd, char *save);
-
 #endif
