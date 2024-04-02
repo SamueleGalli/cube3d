@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/02 14:59:02 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:22:01 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,5 @@ void	init_game(t_general *g)
 	}
 	recopy(g, 0, 0);
 	coordinate_player(g, 0, 0);
+	draw_map(g, 0, 0);
 }

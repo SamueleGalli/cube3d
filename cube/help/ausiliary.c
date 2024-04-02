@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:36:48 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/02 14:57:23 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:22:14 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	end_mat(char **mat)
 
 void	copy_cubed(t_general *g, int i, int j)
 {
-	g->tmp = (char **)malloc(sizeof(char *) * (end_mat(g->cubed) + 1));
+	g->tmp = (char **)malloc(sizeof(char *) * (end_mat(g->cubed) + 2));
 	while (g->cubed[++i] != 0)
 	{
 		g->tmp[i] = (char *)malloc(sizeof(char ) * \
@@ -48,7 +48,7 @@ void	recopy(t_general *g, int i, int j)
 	while (g->tmp[i] != 0)
 	{
 		g->cubed[i] = (char *)malloc(sizeof(char ) * \
-		(ft_strlen(g->tmp[i] + 1)));
+		(ft_strlen(g->tmp[i]) + 1));
 		while (g->tmp[i][j] != 0)
 		{
 			g->cubed[i][j] = g->tmp[i][j];

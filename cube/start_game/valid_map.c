@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:30:30 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/02 14:51:33 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:18:28 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ void	init_check(int i, int j, t_general *g)
 		g->cubed[j + 1][i] = '1';
 		init_check(i, j + 1, g);
 	}
-	if (g->cubed[j - 1][i] && g->cubed[j - 1][i] == '0')
+	if (g->cubed[j - 1][i] != 0 && g->cubed[j - 1][i] == '0')
 	{
 		g->cubed[j - 1][i] = '1';
 		init_check(i, j - 1, g);
 	}
-	if (g->cubed[j][i + 1] && g->cubed[j][i + 1] == '0')
+	if (g->cubed[j][i + 1] != 0 && g->cubed[j][i + 1] == '0')
 	{
 		g->cubed[j][i + 1] = '1';
 		init_check(i + 1, j, g);

@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/02 15:04:18 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:30:50 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,9 @@ typedef struct s_general
 	int		fd;
 	int		x_p;
 	int		y_p;
-	int		hight;
-	int		width;
 }			t_general;
 
+void		draw_map(t_general *g, int x, int y);
 void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);

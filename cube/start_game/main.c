@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/02 15:04:32 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:27:20 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	alloc_g(t_general *g, int i, char **v)
 	g->x_p = 0;
 	g->win = 0;
 	g->angle = 0;
-	g->hight = 0;
-	g->width = 0;
 }
 
 int	main(int i, char **v)

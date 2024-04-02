@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/02 12:54:11 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/02 16:20:57 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	alloc_cube(t_general *g, int j)
 	int	i;
 
 	i = 0;
-	while (g->l[i] != '\0')
+	while (g->l[i] != '\0' && g->l[i] != '\n')
 	{
 		g->cubed[j][i] = g->l[i];
 		i++;
