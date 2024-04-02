@@ -8,7 +8,7 @@ SRC = 	cube/start_game/main.c \
 		cube/start_game/alloc_map.c \
    		cube/start_game/key.c \
 		cube/start_game/error.c \
-		cube/start_game/draw_map.c \
+		cube/ray_casting/draw_map.c \
 		cube/help/ausiliary.c \
 		cube/help/free.c \
 		cube/help/ft_strcpy.c \
