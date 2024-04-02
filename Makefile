@@ -1,26 +1,23 @@
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g 
-MLXFLAG = -L/nfs/homes/sgalli/sgoinfre/progetti/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm
-#MLXFLAG = -L/home/sgalli/cube3d/minilibx-linux -lmlx -lX11 -lXext -lm
-#(path casa)
-
+MLXFLAG = -lmlx -lX11 -lXext -lm -Lcube/minilibx-linux
 NAME = cube3D
-
-SRC = 	main.c \
-			help/ausiliary.c \
-			help/valid_map.c \
-			help/alloc_map.c \
-			help/start_game.c \
-			help/free.c \
-       		help/key.c \
-			help/error.c \
-			    libft/ft_strlcpy.c \
-    		    libft/ft_strcmp.c \
-			    libft/ft_substr.c \
-			    libft/ft_strlen.c \
-				libft/ft_strcpy.c \
-				get_next_line/get_next_line.c \
-				get_next_line/get_next_line_utils.c 
+SRC = 	cube/start_game/main.c \
+		cube/start_game/valid_map.c \
+		cube/start_game/start_game.c \
+		cube/start_game/alloc_map.c \
+   		cube/start_game/key.c \
+		cube/start_game/error.c \
+		cube/start_game/draw_map.c \
+		cube/help/ausiliary.c \
+		cube/help/free.c \
+		cube/help/ft_strcpy.c \
+		cube/help/ft_strlcpy.c \
+		cube/help/ft_strcmp.c \
+		cube/help/ft_substr.c \
+		cube/help/ft_strlen.c \
+		cube/get_next_line/get_next_line.c \
+		cube/get_next_line/get_next_line_utils.c 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
