@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/02 16:22:01 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/03 17:09:45 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init_game(t_general *g)
 	g->fd = open(g->v[1], O_RDONLY);
 	if (g->fd < 0)
 	{
-		printf("invalid map.cub try another\n");
+		printf("Error(invalid map.cub try another)\n");
 		if (g != 0)
 			free(g);
 		exit(0);
@@ -50,7 +50,7 @@ void	init_game(t_general *g)
 	alloc_map(g, i);
 	if (is_valid(g) == 0)
 	{
-		printf("map not closed by walls");
+		printf("Error\n(map not closed by walls)");
 		end_program(g);
 	}
 	recopy(g, 0, 0);

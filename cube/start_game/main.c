@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/02 15:27:20 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/03 17:13:20 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	start_cube(t_general *g)
 	mlx_loop(g->mlx);
 }
 
-void	alloc_g(t_general *g, int i, char **v)
+void	alloc_g(t_general *g, int c, char **v)
 {
-	g->i = i;
+	g->i = c;
 	g->v = v;
 	g->l = NULL;
 	g->tmp = NULL;
@@ -36,12 +36,12 @@ void	alloc_g(t_general *g, int i, char **v)
 	g->angle = 0;
 }
 
-int	main(int i, char **v)
+int	main(int c, char **v)
 {
 	t_general	*g;
 
 	g = malloc(sizeof(t_general));
-	alloc_g(g, i, v);
+	alloc_g(g, c, v);
 	if (check_error(g->v, g->i) == 1)
 	{
 		if (g != 0)
