@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/03 17:13:20 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/08 12:10:15 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	start_cube(t_general *g)
 {
 	init_game(g);
 	g->mlx = mlx_init();
-	g->win = mlx_new_window(g->mlx, 800, 600, "cube3D");
+	g->win = mlx_new_window(g->mlx, g->width, g->height, "cube3D");
 	mlx_hook(g->win, 17, 1L << 17, end_program, g);
 	mlx_key_hook(g->win, manage_key, g);
+	draw_map(g);
 	mlx_loop(g->mlx);
 }
 
@@ -31,9 +32,12 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->cubed = NULL;
 	g->mlx = 0;
 	g->y_p = 0;
+	g->x = 0;
+	g->y = 0;
+	g->width = 800;
+	g->height = 600;
 	g->x_p = 0;
 	g->win = 0;
-	g->angle = 0;
 }
 
 int	main(int c, char **v)
