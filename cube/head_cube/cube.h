@@ -6,7 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/09 14:59:53 by sgalli           ###   ########.fr       */
+=======
+/*   Updated: 2024/04/09 13:00:57 by sgalli           ###   ########.fr       */
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +51,17 @@ typedef struct s_general
 	int		height;
 	int		i;
 	int		fd;
+<<<<<<< HEAD
 	int		size_obj;
+=======
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	int		x;
 	int		y;
 	int		x_p;
 	int		y_p;
 	int		x_end;
 	int		y_end;
+<<<<<<< HEAD
 	float	fov;
 	float	ray_y;
 	float	ray_x;
@@ -65,6 +73,10 @@ typedef struct s_general
 }			t_general;
 
 void		fov(t_general *g);
+=======
+}			t_general;
+
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);

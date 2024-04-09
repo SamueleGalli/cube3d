@@ -6,7 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:30:30 by sgalli            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/09 15:09:09 by sgalli           ###   ########.fr       */
+=======
+/*   Updated: 2024/04/09 12:20:50 by sgalli           ###   ########.fr       */
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +18,46 @@
 
 void	init_check(int i, int j, t_general *g)
 {
+<<<<<<< HEAD
 	if (g->cubed[j + 1][i] != 0 && g->cubed[j + 1][i] == '0' && \
 	j + 1 < g->y_end)
+=======
+	if (g->cubed[j + 1][i] != 0 && g->cubed[j + 1][i] == '0' &&
+		j + 1 < g->y_end)
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	{
 		g->cubed[j + 1][i] = '1';
 		init_check(i, j + 1, g);
 	}
+<<<<<<< HEAD
 	if (g->cubed[j - 1][i] != 0 && g->cubed[j - 1][i] == '0' && \
 	j - 1 > 0)
+=======
+	if (g->cubed[j - 1][i] != 0 && g->cubed[j - 1][i] == '0' &&
+		j - 1 > 0)
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	{
 		g->cubed[j - 1][i] = '1';
 		init_check(i, j - 1, g);
 	}
+<<<<<<< HEAD
 	if (g->cubed[j][i + 1] != 0 && g->cubed[j][i + 1] == '0' && \
 	i + 1 < g->x_end)
+=======
+	if (g->cubed[j][i + 1] != 0 && g->cubed[j][i + 1] == '0' && 
+		i + 1 < g->x_end)
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	{
 		g->cubed[j][i + 1] = '1';
 		init_check(i + 1, j, g);
 	}
+<<<<<<< HEAD
 	if (g->cubed[j][i - 1] != 0 && g->cubed[j][i - 1] == '0' && \
 	i - 1 > 0)
+=======
+	if (g->cubed[j][i - 1] != 0 && g->cubed[j][i - 1] == '0' &&
+		i - 1 > 0)
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	{
 		g->cubed[j][i - 1] = '1';
 		init_check(i - 1, j, g);
@@ -65,8 +89,13 @@ int	last_check(t_general *g, int i, int j)
 		{
 			if (g->cubed[i][j] == '0')
 			{
+<<<<<<< HEAD
 				if ((j == g->x_end && i == g->y_end) || (j == g->x_end \
 				&& i == 0) || (j == 0 && i == 0) || (j == 0 && i == g->y_end))
+=======
+				if ((j == g->x_end && i == g->y_end) || (j == g->x_end && i == 0) || \
+				(j == 0 && i == 0) || (j == 0 && i == g->y_end))
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 				{
 					if (check_angle(i, j, g) == 1)
 						return (0);

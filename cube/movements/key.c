@@ -6,7 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/09 15:09:21 by sgalli           ###   ########.fr       */
+=======
+/*   Updated: 2024/04/09 12:37:52 by sgalli           ###   ########.fr       */
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +70,7 @@ void	move_direction(char c, t_general *g)
 		g->cubed[g->y_p][g->x_p] = g->p_view;
 		g->cubed[g->y_p][g->x_p - 1] = '0';
 	}
+<<<<<<< HEAD
 }
 
 void	rotate_left(t_general *g)
@@ -92,6 +97,9 @@ void	rotate_right(t_general *g)
 	y = g->x_dir * sin(angle) + g->y_dir * cos(angle);
 	g->x_dir = x;
 	g->y_dir = y;
+=======
+	//render(g);
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 }
 
 int	manage_key(int key, t_general *g)
@@ -107,8 +115,18 @@ int	manage_key(int key, t_general *g)
 	else if (key == 115)
 		move_direction('S', g);
 	else if (key == 65361)
+<<<<<<< HEAD
 		rotate_left(g);
 	else if (key == 65363)
 		rotate_right(g);
+=======
+	{
+		printf("move visual left\n");
+	}
+	else if (key == 65363)
+	{
+		printf("move visual right\n");
+	}
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	return (1);
 }

@@ -6,7 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/09 14:53:52 by sgalli           ###   ########.fr       */
+=======
+/*   Updated: 2024/04/09 12:59:39 by sgalli           ###   ########.fr       */
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +48,11 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->y_p = 0;
 	g->x = 0;
 	g->p_view = 0;
+<<<<<<< HEAD
 	g->x_dir = 0;
 	g->y_dir = 0;
+=======
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	g->y = 0;
 	g->width = 800;
 	g->height = 600;

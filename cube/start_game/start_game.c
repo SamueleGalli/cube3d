@@ -6,7 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2024/04/09 14:26:48 by sgalli           ###   ########.fr       */
+=======
+/*   Updated: 2024/04/09 11:40:09 by sgalli           ###   ########.fr       */
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +34,7 @@ void	coordinate_player(t_general *g)
 		}
 		g->x = 0;
 		g->y++;
+<<<<<<< HEAD
 	}
 }
 
@@ -54,6 +59,8 @@ void	set_view(t_general *g)
 	{
 		g->x_dir = -1;
 		g->y_dir = 0;
+=======
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	}
 }
 
@@ -79,7 +86,10 @@ void	init_game(t_general *g)
 	}
 	recopy(g);
 	coordinate_player(g);
+<<<<<<< HEAD
 	set_view(g);
+=======
+>>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	g->x = 0;
 	g->y = 0;
 }
