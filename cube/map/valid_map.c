@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:30:30 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/08 12:05:30 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/09 12:20:50 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,47 @@
 
 void	init_check(int i, int j, t_general *g)
 {
-	if (g->cubed[j + 1][i] != 0 && g->cubed[j + 1][i] == '0')
+	if (g->cubed[j + 1][i] != 0 && g->cubed[j + 1][i] == '0' &&
+		j + 1 < g->y_end)
 	{
 		g->cubed[j + 1][i] = '1';
 		init_check(i, j + 1, g);
 	}
-	if (g->cubed[j - 1][i] != 0 && g->cubed[j - 1][i] == '0')
+	if (g->cubed[j - 1][i] != 0 && g->cubed[j - 1][i] == '0' &&
+		j - 1 > 0)
 	{
 		g->cubed[j - 1][i] = '1';
 		init_check(i, j - 1, g);
 	}
-	if (g->cubed[j][i + 1] != 0 && g->cubed[j][i + 1] == '0')
+	if (g->cubed[j][i + 1] != 0 && g->cubed[j][i + 1] == '0' && 
+		i + 1 < g->x_end)
 	{
 		g->cubed[j][i + 1] = '1';
 		init_check(i + 1, j, g);
 	}
-	if (g->cubed[j][i - 1] != 0 && g->cubed[j][i - 1] == '0')
+	if (g->cubed[j][i - 1] != 0 && g->cubed[j][i - 1] == '0' &&
+		i - 1 > 0)
 	{
 		g->cubed[j][i - 1] = '1';
 		init_check(i - 1, j, g);
 	}
+}
+
+int	check_angle(int i, int j, t_general *g)
+{
+	if (j == g->x_end && i == g->y_end && g->cubed[i][j - 1] == '1' && \
+	g->cubed[i - 1][i] == '1')
+		return (0);
+	else if (j == g->x_end && i == 0 && g->cubed[i][j - 1] == '1' && \
+	g->cubed[i + 1][i] == '1')
+		return (0);
+	else if (j == 0 && i == 0 && g->cubed[i][j + 1] == '1' && \
+	g->cubed[i + 1][i] == '1')
+		return (0);
+	else if (j == 0 && i == g->y_end && g->cubed[i][j + 1] == '1' && \
+	g->cubed[i - 1][i] == '1')
+		return (0);
+	return (1);
 }
 
 int	last_check(t_general *g, int i, int j)
@@ -43,7 +64,16 @@ int	last_check(t_general *g, int i, int j)
 		while (g->cubed[i][j] != 0)
 		{
 			if (g->cubed[i][j] == '0')
-				return (0);
+			{
+				if ((j == g->x_end && i == g->y_end) || (j == g->x_end && i == 0) || \
+				(j == 0 && i == 0) || (j == 0 && i == g->y_end))
+				{
+					if (check_angle(i, j, g) == 1)
+						return (0);
+				}
+				else
+					return (0);
+			}
 			j++;
 		}
 		j = 0;

@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/03 17:28:52 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/09 12:37:52 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,73 @@ S = 115
 -> = 65363
 */
 
+/*void	render(t_general *g)
+{
+	g->x = 0;
+	g->y = 0;
+	while (g->cubed[g->y] != 0)
+	{
+		while (g->cubed[g->y][g->x] != 0)
+		{
+			printf("%c", g->cubed[g->y][g->x]);
+			g->x++;
+		}
+		printf("\n");
+		g->x = 0;
+		g->y++;
+	}
+	g->y = 0;
+	g->x = 0;
+}*/
+
+void	move_direction(char c, t_general *g)
+{
+	if (c == 'S' && g->cubed[g->y_p + 1][g->x_p] != '1')
+	{
+		g->y_p++;
+		g->cubed[g->y_p][g->x_p] = g->p_view;
+		g->cubed[g->y_p - 1][g->x_p] = '0';
+	}
+	else if (c == 'W' && g->cubed[g->y_p - 1][g->x_p] != '1')
+	{
+		g->y_p--;
+		g->cubed[g->y_p][g->x_p] = g->p_view;
+		g->cubed[g->y_p + 1][g->x_p] = '0';
+	}
+	else if (c == 'A' && g->cubed[g->y_p][g->x_p - 1] != '1')
+	{
+		g->x_p--;
+		g->cubed[g->y_p][g->x_p] = g->p_view;
+		g->cubed[g->y_p][g->x_p + 1] = '0';
+	}
+	else if (c == 'D' && g->cubed[g->y_p][g->x_p + 1] != '1')
+	{
+		g->x_p++;
+		g->cubed[g->y_p][g->x_p] = g->p_view;
+		g->cubed[g->y_p][g->x_p - 1] = '0';
+	}
+	//render(g);
+}
+
 int	manage_key(int key, t_general *g)
 {
 	if (key == 65307)
 		end_program(g);
 	if (key == 97)
-		printf("A premuta\n");
+		move_direction('A', g);
 	else if (key == 119)
-		printf("W premuta\n");
+		move_direction('W', g);
 	else if (key == 100)
-		printf("D premuta\n");
+		move_direction('D', g);
 	else if (key == 115)
-		printf("S premuta\n");
+		move_direction('S', g);
 	else if (key == 65361)
-		printf("<- premuta\n");
+	{
+		printf("move visual left\n");
+	}
 	else if (key == 65363)
-		printf("-> premuta\n");
+	{
+		printf("move visual right\n");
+	}
 	return (1);
 }

@@ -6,45 +6,62 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 14:34:17 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/08 15:01:52 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/09 13:01:22 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head_cube/cube.h"
 
-void	map_raycasting(t_general *g, int i, int j)
+void	map_raycasting(t_general *g)
 {
-	if (g->cubed[i][j] == '0')
+	int	i;
+
+	i = 0;
+	if (g->cubed[g->y][g->x] == '0')
 	{
-		printf("pavimento\n");
+		//printf("pavimento\n");
+		while (i < 20)
+		{
+			mlx_pixel_put(g->mlx, g->win, g->x * 60 + i, g->y * 60 + i, 0x00FF0000);
+			i++;
+		}
 		//draw_floor(g);
 	}
-	else if (g->cubed[i][j] == '1')
+	else if (g->cubed[g->y][g->x] == '1')
 	{
-		printf("muro\n");
+		while (i < 20)
+		{
+			mlx_pixel_put(g->mlx, g->win, g->x * 60 + i, g->y * 60 + i, 0x0000F000);
+			i++;
+		}
+		//printf("muro\n");
 		//draw_wall(g);
 	}
-	if (g->cubed[i][j] == 'N')
-		printf("buono\n");
+	if (g->cubed[g->y][g->x] == 'N' || g->cubed[g->y][g->x] == 'S' || \
+		g->cubed[g->y][g->x] == 'E' || g->cubed[g->y][g->x] == 'W')
+	{
+		while (i < 20)
+		{
+			mlx_pixel_put(g->mlx, g->win, g->x * 60 + i, g->y * 60 + i, 0xFF0F0FF);
+			i++;
+		}
+		//printf("buono\n");
+	}
 }
 
-void	draw_map(t_general *g)
+int	draw_map(t_general *g)
 {
-	int	x_p;
-	int	y_p;
-
-	x_p = g->x_p;
-	y_p = g->y_p;
 	g->x = 0;
 	g->y = 0;
-	while (g->cubed[x_p] != 0)
+	while (g->cubed[g->y] != 0)
 	{
-		while (g->cubed[x_p][y_p] != 0)
+		while (g->cubed[g->y][g->x] != 0)
 		{
-			map_raycasting(g, x_p, y_p);
-			y_p++;
+			map_raycasting(g);
+			g->x++;
 		}
-		y_p = 0;
-		x_p++;
+		g->x = 0;
+		g->y++;
 	}
+	return (0);
 }

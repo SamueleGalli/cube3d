@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/08 12:10:08 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/09 13:00:57 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_general
 	char	*l;
 	void	*mlx;
 	void	*win;
+	char	p_view;
 	int		width;
 	int		height;
 	int		i;
@@ -53,7 +54,6 @@ typedef struct s_general
 	int		y_end;
 }			t_general;
 
-void		draw_map(t_general *g);
 void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);
@@ -63,6 +63,8 @@ void		recopy(t_general *g);
 
 size_t		ft_strlen_g(const char *s);
 
+int			draw_map(t_general *g);
+int			ft_mat_len(char **mat);
 int			ft_strcmp(char *s, char *s2);
 int			check_error(char **v, int i);
 int			ft_strlcpy(char *dest, char *src, int size);

@@ -9,6 +9,7 @@ SRC = 	cube/start_game/main.c \
 		cube/map/get_next_line.c \
 		cube/map/get_next_line_utils.c \
 		cube/help/ausiliary.c \
+		cube/help/ft_mat_len.c \
 		cube/help/ft_strcpy.c \
 		cube/help/ft_strlcpy.c \
 		cube/help/ft_strcmp.c \
