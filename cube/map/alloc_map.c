@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/02 16:20:57 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/09 12:17:59 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,13 @@ void	alloc_map(t_general *g, int i)
 		j++;
 	}
 	g->cubed[j] = 0;
+	g->x_end = (ft_strlen(g->cubed[0]) - 1);
+	g->y_end = (ft_mat_len(g->cubed) - 1);
+	if (g->x_end == -1 && g->y_end == -1)
+	{
+		printf("Error\n(map must be not empty)");
+		end_program(g);
+	}
 }
 
 int	getting_line(t_general *g, int i)

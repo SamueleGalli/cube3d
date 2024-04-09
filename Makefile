@@ -9,12 +9,14 @@ SRC = 	cube/start_game/main.c \
 		cube/map/get_next_line.c \
 		cube/map/get_next_line_utils.c \
 		cube/help/ausiliary.c \
+		cube/help/ft_mat_len.c \
 		cube/help/ft_strcpy.c \
 		cube/help/ft_strlcpy.c \
 		cube/help/ft_strcmp.c \
 		cube/help/ft_substr.c \
 		cube/help/ft_strlen.c \
 		cube/ray_casting/draw_map.c \
+		cube/ray_casting/ray_casting.c \
    		cube/movements/key.c \
 		cube/free_and_error/free.c \
 		cube/free_and_error/error.c
