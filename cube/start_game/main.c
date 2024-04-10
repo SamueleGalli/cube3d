@@ -6,11 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/04/09 14:53:52 by sgalli           ###   ########.fr       */
-=======
-/*   Updated: 2024/04/09 12:59:39 by sgalli           ###   ########.fr       */
->>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
+/*   Updated: 2024/04/10 14:59:23 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +24,7 @@ void	start_cube(t_general *g)
 	g->win = mlx_new_window(g->mlx, g->width, g->height, "cube3D");
 	mlx_hook(g->win, 17, 1L << 17, end_program, g);
 	mlx_key_hook(g->win, manage_key, g);
-	mlx_loop_hook(g->mlx, draw_map, g);
+	mlx_loop_hook(g->mlx, update_cube, g);
 	mlx_loop(g->mlx);
 }
 
@@ -38,24 +34,19 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->v = v;
 	g->l = 0;
 	g->tmp = 0;
-	g->fov = 90;
 	g->pg = 3.14159265358979323846;
-	g->x_orizontal = 0;
-	g->y_orizontal = -64;
+	g->fov = 60 * (g->pg / 180);
 	g->cubed = 0;
 	g->mlx = 0;
-	g->size_obj = 20;
 	g->y_p = 0;
 	g->x = 0;
 	g->p_view = 0;
-<<<<<<< HEAD
-	g->x_dir = 0;
-	g->y_dir = 0;
-=======
->>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	g->y = 0;
 	g->width = 800;
 	g->height = 600;
+	g->px_size = g->width / 2;
+	g->py_size = g->height / 2;
+	g->size_obj = (((g->width + g->height) / 2.0) * 0.1);
 	g->x_p = 0;
 	g->win = 0;
 }

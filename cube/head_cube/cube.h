@@ -6,11 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2024/04/09 14:59:53 by sgalli           ###   ########.fr       */
-=======
-/*   Updated: 2024/04/09 13:00:57 by sgalli           ###   ########.fr       */
->>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
+/*   Updated: 2024/04/10 15:37:20 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,42 +47,32 @@ typedef struct s_general
 	int		height;
 	int		i;
 	int		fd;
-<<<<<<< HEAD
 	int		size_obj;
-=======
->>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 	int		x;
 	int		y;
 	int		x_p;
 	int		y_p;
 	int		x_end;
 	int		y_end;
-<<<<<<< HEAD
-	float	fov;
-	float	ray_y;
-	float	ray_x;
-	float	x_orizontal;
-	float	y_orizontal;
+	double	fov;
 	double	pg;
-	double	x_dir;
-	double	y_dir;
+	double	px_size;
+	double	py_size;
 }			t_general;
 
 void		fov(t_general *g);
-=======
-}			t_general;
-
->>>>>>> 6d26ea0b2dd8bd80e53dceb146ed3a81aa8d14f7
 void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);
 void		copy_cubed(t_general *g);
 void		free_matrix(char **mat);
+void		drawing(t_general *g, int color);
 void		recopy(t_general *g);
+void		raycast(t_general *g, int s_x, int s_y);
 
 size_t		ft_strlen_g(const char *s);
 
-int			draw_map(t_general *g);
+int			update_cube(t_general *g);
 int			ft_mat_len(char **mat);
 int			ft_strcmp(char *s, char *s2);
 int			check_error(char **v, int i);
@@ -97,7 +83,6 @@ int			end_program(t_general *g);
 int			getting_line(t_general *g, int i);
 int			is_valid(t_general *g);
 int			end_mat(char **mat);
-
 char		*ft_substr(char *s, int start, int len);
 char		*get_next_line(int fd);
 char		*ft_strjoin(char *s1, char *b);
