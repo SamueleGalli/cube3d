@@ -6,79 +6,52 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/10 15:47:30 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/11 14:13:05 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head_cube/cube.h"
 
-/*
-A = 97
-B = 100
-W = 119
-S = 115
-<- = 65361
--> = 65363
-*/
-
-/*void	render(t_general *g)
-{
-	g->x = 0;
-	g->y = 0;
-	while (g->cubed[g->y] != 0)
-	{
-		while (g->cubed[g->y][g->x] != 0)
-		{
-			printf("%c", g->cubed[g->y][g->x]);
-			g->x++;
-		}
-		printf("\n");
-		g->x = 0;
-		g->y++;
-	}
-	g->y = 0;
-	g->x = 0;
-}*/
-
 void	move_direction(char c, t_general *g)
 {
-	if (c == 'S' && g->cubed[g->y_p + 1][g->x_p] != '1')
+	if (c == 'S' && g->cubed[g->pl_y + 1][g->pl_x] != '1')
 	{
-		g->y_p++;
-		g->cubed[g->y_p][g->x_p] = g->p_view;
-		g->cubed[g->y_p - 1][g->x_p] = '0';
+		g->cubed[g->pl_y + 1][g->pl_x] = g->cubed[g->pl_y][g->pl_x];
+		g->cubed[g->pl_y][g->pl_x] = '0';
+		g->y_p += g->size_obj;
 	}
-	else if (c == 'W' && g->cubed[g->y_p - 1][g->x_p] != '1')
+	else if (c == 'W' && g->cubed[g->pl_y - 1][g->pl_x] != '1')
 	{
-		g->y_p--;
-		g->cubed[g->y_p][g->x_p] = g->p_view;
-		g->cubed[g->y_p + 1][g->x_p] = '0';
+		g->cubed[g->pl_y - 1][g->pl_x] = g->cubed[g->pl_y][g->pl_x];
+		g->cubed[g->pl_y][g->pl_x] = '0';
+		g->y_p -= g->size_obj;
 	}
-	else if (c == 'A' && g->cubed[g->y_p][g->x_p - 1] != '1')
+	else if (c == 'A' && g->cubed[g->pl_y][g->pl_x - 1] != '1')
 	{
-		g->x_p--;
-		g->cubed[g->y_p][g->x_p] = g->p_view;
-		g->cubed[g->y_p][g->x_p + 1] = '0';
+		g->cubed[g->pl_y][g->pl_x - 1] = g->cubed[g->pl_y][g->pl_x];
+		g->cubed[g->pl_y][g->pl_x] = '0';
+		g->x_p -= g->size_obj;
 	}
-	else if (c == 'D' && g->cubed[g->y_p][g->x_p + 1] != '1')
+	else if (c == 'D' && g->cubed[g->pl_y][g->pl_x + 1] != '1')
 	{
-		g->x_p++;
-		g->cubed[g->y_p][g->x_p] = g->p_view;
-		g->cubed[g->y_p][g->x_p - 1] = '0';
+		g->cubed[g->pl_y][g->pl_x + 1] = g->cubed[g->pl_y][g->pl_x];
+		g->cubed[g->pl_y][g->pl_x] = '0';
+		g->x_p += g->size_obj;
 	}
+	mlx_clear_window(g->mlx, g->win);
 }
 
 int	manage_key(int key, t_general *g)
 {
-	if (key == 65307)
+	if (key == ESC)
 		end_program(g);
-	if (key == 97)
+	if (key == A)
 		move_direction('A', g);
-	else if (key == 119)
+	else if (key == W)
 		move_direction('W', g);
-	else if (key == 100)
+	else if (key == D)
 		move_direction('D', g);
-	else if (key == 115)
+	else if (key == S)
 		move_direction('S', g);
 	//else if (key == 65361 || key == 65363)
 		//rotate(g, key);

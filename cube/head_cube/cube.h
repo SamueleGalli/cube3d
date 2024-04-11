@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/10 15:37:20 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/11 14:50:54 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,12 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 8
+#  define ESC 65307
+#  define W 119
+#  define A 97
+#  define S 115
+#  define D 100
+#  define PG 3.14159265358979323846
 # endif
 
 # include "../minilibx-linux/mlx.h"
@@ -26,13 +32,6 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-
-/*
-N = NORD
-S = SUD
-E = EST
-W = WEST
-*/
 
 typedef struct s_general
 {
@@ -50,25 +49,25 @@ typedef struct s_general
 	int		size_obj;
 	int		x;
 	int		y;
-	int		x_p;
-	int		y_p;
+	int		pl_x;
+	int		pl_y;
+	double	x_p;
+	double	y_p;
 	int		x_end;
 	int		y_end;
-	double	fov;
-	double	pg;
-	double	px_size;
-	double	py_size;
 }			t_general;
 
-void		fov(t_general *g);
+void		draw_walls(t_general *g, int x, int y, int distance);
+void		draw_floor(t_general *g, int x, int y, int distance);
+void		draw_ceiling(t_general *g, int x, int y, int distance);
+void		draw_floor(t_general *g, int x, int y, int distance);
 void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);
 void		copy_cubed(t_general *g);
 void		free_matrix(char **mat);
-void		drawing(t_general *g, int color);
 void		recopy(t_general *g);
-void		raycast(t_general *g, int s_x, int s_y);
+void		raycast(t_general *g);
 
 size_t		ft_strlen_g(const char *s);
 

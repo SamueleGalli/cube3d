@@ -15,8 +15,8 @@ SRC = 	cube/start_game/main.c \
 		cube/help/ft_strcmp.c \
 		cube/help/ft_substr.c \
 		cube/help/ft_strlen.c \
-		cube/ray_casting/draw_map.c \
 		cube/ray_casting/ray_casting.c \
+		cube/ray_casting/perspective.c \
    		cube/movements/key.c \
 		cube/free_and_error/free.c \
 		cube/free_and_error/error.c
