@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:59:35 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/11 14:45:50 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/11 14:56:46 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ double	angle_view(t_general *g)
 	return (1);
 }
 
-double	raycast_distance(t_general *g, double angle, int mx, int my)
+double	raycast_distance(t_general *g, int mx, int my)
 {
 	double	x;
 	double	y;
@@ -34,8 +34,8 @@ double	raycast_distance(t_general *g, double angle, int mx, int my)
 
 	x = g->x_p;
 	y = g->y_p;
-	dx = cos(angle);
-	dy = sin(angle);
+	dx = cos(g->angle);
+	dy = sin(g->angle);
 	while (x >= 0 && x < g->x_end * g->size_obj && y >= 0 && \
 	y < g->y_end * g->size_obj)
 	{
@@ -54,10 +54,9 @@ double	raycast_distance(t_general *g, double angle, int mx, int my)
 void	angle_and_draw(t_general *g, int x, int y)
 {
 	double	distance;
-	double	angle;
 
-	angle = atan2(y - g->y_p, x - g->x_p) - angle_view(g);
-	distance = raycast_distance(g, angle, 0, 0);
+	g->angle = atan2(y - g->y_p, x - g->x_p) - angle_view(g);
+	distance = raycast_distance(g, 0, 0);
 	draw_walls(g, x, y, distance);
 	draw_floor(g, x, y, distance);
 	draw_ceiling(g, x, y, distance);

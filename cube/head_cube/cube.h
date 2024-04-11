@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/11 14:50:54 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/11 14:54:51 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ typedef struct s_general
 	int		y;
 	int		pl_x;
 	int		pl_y;
-	double	x_p;
-	double	y_p;
 	int		x_end;
 	int		y_end;
+	double	x_p;
+	double	y_p;
+	double	angle;
 }			t_general;
 
 void		draw_walls(t_general *g, int x, int y, int distance);

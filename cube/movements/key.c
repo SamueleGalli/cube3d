@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/11 14:13:05 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/11 14:56:04 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,22 @@ void	move_direction(char c, t_general *g)
 	mlx_clear_window(g->mlx, g->win);
 }
 
+void	rotate(t_general *g, int key)
+{
+	if (key == 65361)
+	{
+		g->angle += 0.1;
+		if (g->angle >= 2 * PG)
+			g->angle -= 2 * PG;
+	}
+	else
+	{
+		g->angle -= 0.1;
+		if (g->angle < 0)
+			g->angle += 2 * PG;
+	}
+}
+
 int	manage_key(int key, t_general *g)
 {
 	if (key == ESC)
@@ -53,7 +69,7 @@ int	manage_key(int key, t_general *g)
 		move_direction('D', g);
 	else if (key == S)
 		move_direction('S', g);
-	//else if (key == 65361 || key == 65363)
-		//rotate(g, key);
+	else if (key == 65361 || key == 65363)
+		rotate(g, key);
 	return (1);
 }
