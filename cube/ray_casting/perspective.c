@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 11:06:44 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/11 14:48:51 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/12 16:10:30 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	draw_walls(t_general *g, int x, int y, int distance)
 
 	if (distance <= 0)
 	{
-		color = 0x808080;
+		color = WHITE;
 		w_height = g->height;
 	}
 	else
 	{
-		color = 0x9ACD32;
+		color = CYAN;
 		w_height = (int)(g->height / distance);
 	}
 	w_top = (g->height - w_height) / 2;
@@ -42,14 +42,15 @@ void	draw_floor(t_general *g, int x, int y, int distance)
 	int	f_bottom;
 	int	color;
 
+
 	if (distance <= 0)
 	{
-		color = 0xFFA500;
+		color = RED;
 		f_height = g->height;
 	}
 	else
 	{
-		color = 0x0000FF;
+		color = BLUE;
 		f_height = (int)(g->height / distance);
 	}
 	f_top = (g->height - f_height) / 2;
@@ -67,12 +68,12 @@ void	draw_ceiling(t_general *g, int x, int y, int distance)
 
 	if (distance <= 0)
 	{
-		color = 0x0000FF;
+		color = YELLOW;
 		c_height = g->height;
 	}
 	else
 	{
-		color = 0x808080;
+		color = GREEN;
 		c_height = (int)(g->height / distance);
 	}
 	c_top = (g->height - g->y_p) / 2;

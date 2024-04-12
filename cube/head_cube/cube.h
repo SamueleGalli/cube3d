@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/11 14:54:51 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/12 16:09:29 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,12 @@
 #  define S 115
 #  define D 100
 #  define PG 3.14159265358979323846
+#  define WHITE 0xFFFFFF
+#  define RED 0xFF0000
+#  define GREEN 0x00FF00
+#  define BLUE 0x0000FF
+#  define YELLOW 0xFFFF00
+#  define CYAN 0x00FFFF
 # endif
 
 # include "../minilibx-linux/mlx.h"

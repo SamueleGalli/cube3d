@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/11 14:55:03 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/12 16:12:09 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	start_cube(t_general *g)
 	g->mlx = mlx_init();
 	g->win = mlx_new_window(g->mlx, g->width, g->height, "cube3D");
 	mlx_hook(g->win, 17, 1L << 17, end_program, g);
-	mlx_loop_hook(g->mlx, update_cube, g);
+	update_cube(g);
 	mlx_key_hook(g->win, manage_key, g);
 	mlx_loop(g->mlx);
 }

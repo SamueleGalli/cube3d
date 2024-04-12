@@ -6,39 +6,56 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/11 14:56:04 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/12 16:05:56 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head_cube/cube.h"
 
+void	cont_move_direction(char c, t_general *g)
+{
+	if (c == 'A' && g->cubed[g->pl_y][g->pl_x - 1] != '1')
+	{
+		mlx_clear_window(g->mlx, g->win);
+		g->cubed[g->pl_y][g->pl_x - 1] = g->cubed[g->pl_y][g->pl_x];
+		g->cubed[g->pl_y][g->pl_x] = '0';
+		g->x_p -= g->size_obj;
+		g->pl_x--;
+		update_cube(g);
+	}
+	else if (c == 'D' && g->cubed[g->pl_y][g->pl_x + 1] != '1')
+	{
+		mlx_clear_window(g->mlx, g->win);
+		g->cubed[g->pl_y][g->pl_x + 1] = g->cubed[g->pl_y][g->pl_x];
+		g->cubed[g->pl_y][g->pl_x] = '0';
+		g->x_p += g->size_obj;
+		g->pl_x++;
+		update_cube(g);
+	}
+}
+
 void	move_direction(char c, t_general *g)
 {
 	if (c == 'S' && g->cubed[g->pl_y + 1][g->pl_x] != '1')
 	{
+		mlx_clear_window(g->mlx, g->win);
 		g->cubed[g->pl_y + 1][g->pl_x] = g->cubed[g->pl_y][g->pl_x];
 		g->cubed[g->pl_y][g->pl_x] = '0';
 		g->y_p += g->size_obj;
+		g->pl_y++;
+		update_cube(g);
 	}
 	else if (c == 'W' && g->cubed[g->pl_y - 1][g->pl_x] != '1')
 	{
+		mlx_clear_window(g->mlx, g->win);
 		g->cubed[g->pl_y - 1][g->pl_x] = g->cubed[g->pl_y][g->pl_x];
 		g->cubed[g->pl_y][g->pl_x] = '0';
 		g->y_p -= g->size_obj;
+		g->pl_y--;
+		update_cube(g);
 	}
-	else if (c == 'A' && g->cubed[g->pl_y][g->pl_x - 1] != '1')
-	{
-		g->cubed[g->pl_y][g->pl_x - 1] = g->cubed[g->pl_y][g->pl_x];
-		g->cubed[g->pl_y][g->pl_x] = '0';
-		g->x_p -= g->size_obj;
-	}
-	else if (c == 'D' && g->cubed[g->pl_y][g->pl_x + 1] != '1')
-	{
-		g->cubed[g->pl_y][g->pl_x + 1] = g->cubed[g->pl_y][g->pl_x];
-		g->cubed[g->pl_y][g->pl_x] = '0';
-		g->x_p += g->size_obj;
-	}
-	mlx_clear_window(g->mlx, g->win);
+	else
+		cont_move_direction(c, g);
 }
 
 void	rotate(t_general *g, int key)
