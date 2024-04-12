@@ -1,3 +1,4 @@
 ottimizzare raycasting
 ridimensionare muro pavimento e tetto
 visuale si deve ruotare con <- ->
+gestire angolo di visuale correttamente
