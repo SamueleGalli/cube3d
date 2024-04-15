@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/12 16:05:56 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/15 10:54:42 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,40 @@
 
 void	cont_move_direction(char c, t_general *g)
 {
-	if (c == 'A' && g->cubed[g->pl_y][g->pl_x - 1] != '1')
+	if (c == 'A' && g->cubed[g->py][g->px - 1] != '1')
 	{
 		mlx_clear_window(g->mlx, g->win);
-		g->cubed[g->pl_y][g->pl_x - 1] = g->cubed[g->pl_y][g->pl_x];
-		g->cubed[g->pl_y][g->pl_x] = '0';
-		g->x_p -= g->size_obj;
-		g->pl_x--;
+		g->cubed[g->py][g->px - 1] = g->cubed[g->py][g->px];
+		g->cubed[g->py][g->px] = '0';
+		g->px--;
 		update_cube(g);
 	}
-	else if (c == 'D' && g->cubed[g->pl_y][g->pl_x + 1] != '1')
+	else if (c == 'D' && g->cubed[g->py][g->px + 1] != '1')
 	{
 		mlx_clear_window(g->mlx, g->win);
-		g->cubed[g->pl_y][g->pl_x + 1] = g->cubed[g->pl_y][g->pl_x];
-		g->cubed[g->pl_y][g->pl_x] = '0';
-		g->x_p += g->size_obj;
-		g->pl_x++;
+		g->cubed[g->py][g->px + 1] = g->cubed[g->py][g->px];
+		g->cubed[g->py][g->px] = '0';
+		g->px++;
 		update_cube(g);
 	}
 }
 
 void	move_direction(char c, t_general *g)
 {
-	if (c == 'S' && g->cubed[g->pl_y + 1][g->pl_x] != '1')
+	if (c == 'S' && g->cubed[g->py + 1][g->px] != '1')
 	{
 		mlx_clear_window(g->mlx, g->win);
-		g->cubed[g->pl_y + 1][g->pl_x] = g->cubed[g->pl_y][g->pl_x];
-		g->cubed[g->pl_y][g->pl_x] = '0';
-		g->y_p += g->size_obj;
-		g->pl_y++;
+		g->cubed[g->py + 1][g->px] = g->cubed[g->py][g->px];
+		g->cubed[g->py][g->px] = '0';
+		g->py++;
 		update_cube(g);
 	}
-	else if (c == 'W' && g->cubed[g->pl_y - 1][g->pl_x] != '1')
+	else if (c == 'W' && g->cubed[g->py - 1][g->px] != '1')
 	{
 		mlx_clear_window(g->mlx, g->win);
-		g->cubed[g->pl_y - 1][g->pl_x] = g->cubed[g->pl_y][g->pl_x];
-		g->cubed[g->pl_y][g->pl_x] = '0';
-		g->y_p -= g->size_obj;
-		g->pl_y--;
+		g->cubed[g->py - 1][g->px] = g->cubed[g->py][g->px];
+		g->cubed[g->py][g->px] = '0';
+		g->py--;
 		update_cube(g);
 	}
 	else

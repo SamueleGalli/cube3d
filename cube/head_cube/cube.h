@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/12 16:09:29 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/15 15:06:12 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@
 #  define S 115
 #  define D 100
 #  define PG 3.14159265358979323846
+#  define GREEN 0x00CC00
+#  define BLUE 0x0000FF
 #  define WHITE 0xFFFFFF
 #  define RED 0xFF0000
-#  define GREEN 0x00FF00
-#  define BLUE 0x0000FF
 #  define YELLOW 0xFFFF00
-#  define CYAN 0x00FFFF
 # endif
 
 # include "../minilibx-linux/mlx.h"
@@ -51,33 +50,54 @@ typedef struct s_general
 	int		width;
 	int		height;
 	int		i;
+	int		j;
 	int		fd;
-	int		size_obj;
 	int		x;
 	int		y;
-	int		pl_x;
-	int		pl_y;
+	int		px;
+	int		py;
 	int		x_end;
 	int		y_end;
-	double	x_p;
-	double	y_p;
+	int		r;
+	int		mx;
+	int		my;
+	int		mp;
+	int		dof;
+	int		side;
+	int		ca;
+	int		color;
+	int		lineh;
+	int		lineoff;
+	double	pdx;
+	double	pdy;
 	double	angle;
+	double	vx;
+	double	vy;
+	double	rx;
+	double	ry;
+	double	ra;
+	double	xo;
+	double	yo;
+	double	disv;
+	double	dish;
+	double	tan;
 }			t_general;
 
-void		draw_walls(t_general *g, int x, int y, int distance);
-void		draw_floor(t_general *g, int x, int y, int distance);
-void		draw_ceiling(t_general *g, int x, int y, int distance);
-void		draw_floor(t_general *g, int x, int y, int distance);
+void		raycast(t_general *g);
+void		horizontal_ray(t_general *g);
+void		vertical_ray(t_general *g);
 void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);
 void		copy_cubed(t_general *g);
 void		free_matrix(char **mat);
 void		recopy(t_general *g);
-void		raycast(t_general *g);
+void		cont_raycast(t_general *g);
 
 size_t		ft_strlen_g(const char *s);
 
+int			deg_to_rad(int angle);
+int			fix_angle(int angle);
 int			update_cube(t_general *g);
 int			ft_mat_len(char **mat);
 int			ft_strcmp(char *s, char *s2);

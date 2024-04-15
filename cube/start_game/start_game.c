@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/11 14:51:02 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/15 10:55:59 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,8 @@ void	coordinate_player(t_general *g)
 				|| g->cubed[g->y][g->x] == 'E' || g->cubed[g->y][g->x] == 'W')
 			{
 				g->p_view = g->cubed[g->y][g->x];
-				g->pl_x = g->x;
-				g->pl_y = g->y;
-				g->x_p = (double)g->x;
-				g->y_p = (double)g->y;
+				g->px = g->x;
+				g->py = g->y;
 				return ;
 			}
 			g->x++;

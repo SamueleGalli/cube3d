@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/12 16:12:09 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/15 14:22:53 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,17 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->tmp = 0;
 	g->cubed = 0;
 	g->mlx = 0;
-	g->y_p = 0;
 	g->x = 0;
-	g->angle = 0;
+	g->angle = 90;
 	g->p_view = 0;
 	g->y = 0;
 	g->width = 800;
 	g->height = 600;
-	g->size_obj = (((g->width + g->height) / 2.0) * 0.1);
-	g->x_p = 0;
 	g->win = 0;
+	g->dof = 0;
+	g->side = 0;
+	g->disv = 100000;
+	g->r = 0;
 }
 
 int	main(int c, char **v)

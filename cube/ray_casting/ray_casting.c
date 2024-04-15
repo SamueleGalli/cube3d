@@ -5,85 +5,39 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 14:59:35 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/11 14:56:46 by sgalli           ###   ########.fr       */
+/*   Created: 2024/04/11 11:06:44 by sgalli            #+#    #+#             */
+/*   Updated: 2024/04/15 15:06:22 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head_cube/cube.h"
 
-double	angle_view(t_general *g)
+void	cont_raycast(t_general *g)
 {
-	if (g->p_view == 'N')
-		return (3 * PG / 2);
-	else if (g->p_view == 'E')
-		return (0);
-	else if (g->p_view == 'S')
-		return (PG / 2);
-	else if (g->p_view == 'W')
-		return (PG);
-	return (1);
-}
-
-double	raycast_distance(t_general *g, int mx, int my)
-{
-	double	x;
-	double	y;
-	double	dx;
-	double	dy;
-
-	x = g->x_p;
-	y = g->y_p;
-	dx = cos(g->angle);
-	dy = sin(g->angle);
-	while (x >= 0 && x < g->x_end * g->size_obj && y >= 0 && \
-	y < g->y_end * g->size_obj)
-	{
-		mx = (int)(x + g->size_obj);
-		my = (int)(y + g->size_obj);
-		if (mx >= 0 && mx < g->x_end && my >= 0 && my < g->y_end && \
-			g->cubed[my][mx] == '1')
-			return (sqrt((x - g->x_p) * (x - g->x_p) + \
-			(y - g->y_p) * (y - g->y_p)));
-		x += dx;
-		y += dy;
-	}
-	return (0);
-}
-
-void	angle_and_draw(t_general *g, int x, int y)
-{
-	double	distance;
-
-	g->angle = atan2(y - g->y_p, x - g->x_p) - angle_view(g);
-	distance = raycast_distance(g, 0, 0);
-	draw_walls(g, x, y, distance);
-	draw_floor(g, x, y, distance);
-	draw_ceiling(g, x, y, distance);
+	g->ca = fix_angle(g->angle - g->ra);
+	g->dish = g->dish * cos(deg_to_rad(g->ca));
+	g->lineh = (64 * 320) / g->dish;
+	if (g->lineh > 320)
+		g->lineh = 320;
+	g->lineoff = 160 - (g->lineh >> 1);
+	mlx_pixel_put(g->mlx, g->win, g->px, g->py, BLUE);
+	mlx_pixel_put(g->mlx, g->win, g->rx, g->ry, GREEN);
+	g->ra = (g->ra - 1);
 }
 
 void	raycast(t_general *g)
 {
-	int		y;
-	int		x;	
-
-	y = 0;
-	while (y < g->height)
+	while (g->r < 60)
 	{
-		x = 0;
-		while (x < g->width)
+		g->side = 0;
+		vertical_ray(g);
+		horizontal_ray(g);
+		if (g->disv < g->dish)
 		{
-			angle_and_draw(g, x, y);
-			x++;
+			g->rx = g->vx;
+			g->ry = g->vy;
+			g->dish = g->disv;
 		}
-		y++;
+		cont_raycast(g);
 	}
-}
-
-int	update_cube(t_general *g)
-{
-	g->x = 0;
-	g->y = 0;
-	raycast(g);
-	return (0);
 }
