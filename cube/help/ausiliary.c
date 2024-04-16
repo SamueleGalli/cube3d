@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:36:48 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/15 15:07:07 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/16 13:59:31 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,4 @@ void	recopy(t_general *g)
 	g->cubed[g->x] = 0;
 	g->x = 0;
 	g->y = 0;
-}
-
-int	fix_angle(int angle)
-{
-	if (angle > 359)
-		angle = angle - 360;
-	if (angle < 0)
-		angle = angle + 360;
-	return (angle);
-}
-
-int	deg_to_rad(int angle)
-{
-	return (angle * PG / 180.0);
 }

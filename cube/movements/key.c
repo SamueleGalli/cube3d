@@ -6,68 +6,60 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/15 10:54:42 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/16 15:12:37 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head_cube/cube.h"
 
-void	cont_move_direction(char c, t_general *g)
-{
-	if (c == 'A' && g->cubed[g->py][g->px - 1] != '1')
-	{
-		mlx_clear_window(g->mlx, g->win);
-		g->cubed[g->py][g->px - 1] = g->cubed[g->py][g->px];
-		g->cubed[g->py][g->px] = '0';
-		g->px--;
-		update_cube(g);
-	}
-	else if (c == 'D' && g->cubed[g->py][g->px + 1] != '1')
-	{
-		mlx_clear_window(g->mlx, g->win);
-		g->cubed[g->py][g->px + 1] = g->cubed[g->py][g->px];
-		g->cubed[g->py][g->px] = '0';
-		g->px++;
-		update_cube(g);
-	}
-}
-
 void	move_direction(char c, t_general *g)
 {
-	if (c == 'S' && g->cubed[g->py + 1][g->px] != '1')
-	{
-		mlx_clear_window(g->mlx, g->win);
-		g->cubed[g->py + 1][g->px] = g->cubed[g->py][g->px];
-		g->cubed[g->py][g->px] = '0';
-		g->py++;
-		update_cube(g);
-	}
-	else if (c == 'W' && g->cubed[g->py - 1][g->px] != '1')
-	{
-		mlx_clear_window(g->mlx, g->win);
-		g->cubed[g->py - 1][g->px] = g->cubed[g->py][g->px];
-		g->cubed[g->py][g->px] = '0';
-		g->py--;
-		update_cube(g);
-	}
-	else
-		cont_move_direction(c, g);
+	if (c == 'S')
+		go_south(g);
+	else if (c == 'W')
+		go_north(g);
+	else if (c == 'A')
+		go_west(g);
+	else if (c == 'D')
+		go_east(g);
+}
+
+void	go_right(t_general *g)
+{
+	double	oldirx;
+	double	oldplanex;
+
+	mlx_clear_window(g->mlx, g->win);
+	oldplanex = g->planex;
+	oldirx = g->dirx;
+	g->dirx = g->dirx * cos(-g->rotspeed) - g->diry * sin(-g->rotspeed);
+	g->diry = oldirx * sin(-g->rotspeed) + g->diry * cos(-g->rotspeed);
+	g->planex = g->planex * cos(-g->rotspeed) - g->planey * sin(-g->rotspeed);
+	g->planey = oldplanex * sin(-g->rotspeed) + g->planey * cos(-g->rotspeed);
+	update_cube(g);
+}
+
+void	go_left(t_general *g)
+{
+	double	oldirx;
+	double	oldplanex;
+
+	oldplanex = g->planex;
+	oldirx = g->dirx;
+	mlx_clear_window(g->mlx, g->win);
+	g->dirx = g->dirx * cos(g->rotspeed) - g->diry * sin(g->rotspeed);
+	g->diry = oldirx * sin(g->rotspeed) + g->diry * cos(g->rotspeed);
+	g->planex = g->planex * cos(g->rotspeed) - g->planey * sin(g->rotspeed);
+	g->planey = oldplanex * sin(g->rotspeed) + g->planey * cos(g->rotspeed);
+	update_cube(g);
 }
 
 void	rotate(t_general *g, int key)
 {
 	if (key == 65361)
-	{
-		g->angle += 0.1;
-		if (g->angle >= 2 * PG)
-			g->angle -= 2 * PG;
-	}
-	else
-	{
-		g->angle -= 0.1;
-		if (g->angle < 0)
-			g->angle += 2 * PG;
-	}
+		go_left(g);
+	else if (key == 65363)
+		go_right(g);
 }
 
 int	manage_key(int key, t_general *g)

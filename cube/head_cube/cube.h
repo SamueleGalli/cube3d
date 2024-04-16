@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/15 15:06:12 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/16 15:13:53 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@
 #  define S 115
 #  define D 100
 #  define PG 3.14159265358979323846
-#  define GREEN 0x00CC00
+#  define RED 0xFF0000
+#  define GREEN 0x00FF00
 #  define BLUE 0x0000FF
 #  define WHITE 0xFFFFFF
-#  define RED 0xFF0000
 #  define YELLOW 0xFFFF00
 # endif
 
@@ -49,7 +49,7 @@ typedef struct s_general
 	char	p_view;
 	int		width;
 	int		height;
-	int		i;
+	int		c;
 	int		j;
 	int		fd;
 	int		x;
@@ -58,46 +58,53 @@ typedef struct s_general
 	int		py;
 	int		x_end;
 	int		y_end;
-	int		r;
-	int		mx;
-	int		my;
-	int		mp;
-	int		dof;
-	int		side;
-	int		ca;
 	int		color;
-	int		lineh;
-	int		lineoff;
-	double	pdx;
-	double	pdy;
-	double	angle;
-	double	vx;
-	double	vy;
-	double	rx;
-	double	ry;
-	double	ra;
-	double	xo;
-	double	yo;
-	double	disv;
-	double	dish;
-	double	tan;
+	int		mapx;
+	int		mapy;
+	int		stepx;
+	int		stepy;
+	int		hit;
+	int		side;
+	double	posx;
+	double	posy;
+	double	dirx;
+	double	diry;
+	double	planex;
+	double	planey;
+	double	movespeed;
+	double	rotspeed;
+	double	camerax;
+	double	raydirx;
+	double	raydiry;
+	double	sidedistx;
+	double	sidedisty;
+	double	deltadistx;
+	double	deltadisty;
+	double	perpwalldist;
+	double	perpwalldistx;
+	double	lineheight;
+	double	drawstart;
+	double	drawend;
 }			t_general;
 
-void		raycast(t_general *g);
-void		horizontal_ray(t_general *g);
-void		vertical_ray(t_general *g);
+void		go_south(t_general *g);
+void		go_north(t_general *g);
+void		go_east(t_general *g);
+void		go_west(t_general *g);
+void		initialize_ray(t_general *g, int i);
+void		checking_ray(t_general *g);
+void		hitting(t_general *g);
+void		distance(t_general *g);
+void		verline(t_general *g, int i);
 void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);
 void		copy_cubed(t_general *g);
 void		free_matrix(char **mat);
 void		recopy(t_general *g);
-void		cont_raycast(t_general *g);
 
 size_t		ft_strlen_g(const char *s);
 
-int			deg_to_rad(int angle);
-int			fix_angle(int angle);
 int			update_cube(t_general *g);
 int			ft_mat_len(char **mat);
 int			ft_strcmp(char *s, char *s2);
