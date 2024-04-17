@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/16 13:46:39 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/17 14:54:54 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,44 @@ void	coordinate_player(t_general *g)
 	}
 }
 
+void	continue_angle_view(t_general *g)
+{
+	if (g->p_view == 'E')
+	{
+		g->dirx = 1;
+		g->diry = 0;
+		g->planex = 0;
+		g->planey = 0.66;
+	}
+	else if (g->p_view == 'W')
+	{
+		g->dirx = -1;
+		g->diry = 0;
+		g->planex = 0;
+		g->planey = -0.66;
+	}
+}
+
+void	angle_view(t_general *g)
+{
+	if (g->p_view == 'N')
+	{
+		g->dirx = 0;
+		g->diry = -1;
+		g->planex = 0.66;
+		g->planey = 0;
+	}
+	else if (g->p_view == 'S')
+	{
+		g->dirx = 0;
+		g->diry = 1;
+		g->planex = -0.66;
+		g->planey = 0;
+	}
+	else
+		continue_angle_view(g);
+}
+
 void	init_game(t_general *g)
 {
 	int	i;
@@ -55,6 +93,7 @@ void	init_game(t_general *g)
 	}
 	recopy(g);
 	coordinate_player(g);
+	angle_view(g);
 	g->x = 0;
 	g->y = 0;
 }

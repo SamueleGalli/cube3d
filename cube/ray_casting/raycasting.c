@@ -6,12 +6,19 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:28:46 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/16 15:13:44 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/17 14:27:58 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head_cube/cube.h"
 
+/*
+(camerax) centra player nella mappa
+(dirx, diry) direzione player N/W/S/E
+(mapx, mapy) posizone player
+(deltadistx, deltadisty) distanza del raggio dal muro
+(hit) variabile 1/0
+*/
 void	initialize_ray(t_general *g, int i)
 {
 	g->camerax = 2 * i / (double)g->width - 1;
@@ -24,6 +31,16 @@ void	initialize_ray(t_general *g, int i)
 	g->hit = 0;
 }
 
+/*
+calcola distanza del raggio
+(raydirx < 0) va verso sinistra
+altrimenti verso destra
+(raydiry <0) va giu
+altrimenti va su
+(stepx e stepy) indicano come si muove il raggio
+(sidestepx e sidestepy) indicano la distanza tra il punto corrente
+e la sua cella successiva
+*/
 void	checking_ray(t_general *g)
 {
 	if (g->raydirx < 0)
@@ -48,6 +65,11 @@ void	checking_ray(t_general *g)
 	}
 }
 
+/*
+traccia un raggio cercando 
+il muro di in cella
+l'if else indica dove si muove il raggio
+*/
 void	hitting(t_general *g)
 {
 	while (g->hit == 0)
@@ -68,6 +90,15 @@ void	hitting(t_general *g)
 			g->hit = 1;
 	}
 }
+/*
+l'if else indica se a colpito un 
+raggio l'ungo l'asse x o y
+(lineheight) indica la altezza muro
+(drawstart) indica il punto in cui
+devi iniziare a disegnare il muro
+(drawend) indica il punto in cui finisce il
+disegnamento del muro 
+*/
 
 void	distance(t_general *g)
 {
@@ -86,14 +117,16 @@ void	distance(t_general *g)
 		g->drawend = g->height - 1;
 }
 
+/*
+disenga un pixel alla volta partendo da drawstart
+fino a drawend del colore definito in g->color
+verticalmente sullo schermo
+*/
 void	verline(t_general *g, int i)
 {
-	int	j;
-
-	j = g->drawstart;
-	while (j <= g->drawend)
+	while (g->drawstart <= g->drawend)
 	{
-		mlx_pixel_put(g->mlx, g->win, i, j, g->color);
-		j++;
+		mlx_pixel_put(g->mlx, g->win, i, g->drawstart, g->color);
+		g->drawstart++;
 	}
 }

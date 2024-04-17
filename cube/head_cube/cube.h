@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/16 15:13:53 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/17 14:59:39 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@
 #  define PG 3.14159265358979323846
 #  define RED 0xFF0000
 #  define GREEN 0x00FF00
-#  define BLUE 0x0000FF
-#  define WHITE 0xFFFFFF
-#  define YELLOW 0xFFFF00
+#  define WALL_DOWN "../image/Wall_Down.xpm"
+#  define WALL_UP "../image/Wall_Up.xpm"
+#  define WALL_LEFT "../image/Wall_Left.xpm"
+#  define WALL_RIGHT "../image/Wall_Right.xpm"
 # endif
 
 # include "../minilibx-linux/mlx.h"
@@ -43,13 +44,17 @@ typedef struct s_general
 	char	**tmp;
 	char	**v;
 	char	**cubed;
+	int		**buf;
+	int		*data;
 	char	*l;
 	void	*mlx;
 	void	*win;
+	void	*img;
 	char	p_view;
 	int		width;
 	int		height;
 	int		c;
+	int		rebuf;
 	int		j;
 	int		fd;
 	int		x;
@@ -65,6 +70,18 @@ typedef struct s_general
 	int		stepy;
 	int		hit;
 	int		side;
+	int		texnum;
+	int		texx;
+	int		texy;
+	int		bpp;
+	int		size_l;
+	int		endian;
+	int		img_width;
+	int		img_height;
+	int		texture[8][64 * 64];
+	double	wallx;
+	double	step;
+	double	texpos;
 	double	posx;
 	double	posy;
 	double	dirx;
@@ -87,6 +104,9 @@ typedef struct s_general
 	double	drawend;
 }			t_general;
 
+void		buffer(t_general *g, int i, int j);
+void		texture(t_general *g, int x, int y);
+void		painting(t_general *g, int x);
 void		go_south(t_general *g);
 void		go_north(t_general *g);
 void		go_east(t_general *g);
@@ -95,7 +115,6 @@ void		initialize_ray(t_general *g, int i);
 void		checking_ray(t_general *g);
 void		hitting(t_general *g);
 void		distance(t_general *g);
-void		verline(t_general *g, int i);
 void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);

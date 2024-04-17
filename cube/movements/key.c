@@ -6,11 +6,14 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/16 15:12:37 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/17 11:40:56 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../head_cube/cube.h"
+/*dirx y direzione della telecameta
+planex y manipola la direzione dello
+visuale in prospettivo col piano*/
 
 void	move_direction(char c, t_general *g)
 {
@@ -57,9 +60,9 @@ void	go_left(t_general *g)
 void	rotate(t_general *g, int key)
 {
 	if (key == 65361)
-		go_left(g);
-	else if (key == 65363)
 		go_right(g);
+	else if (key == 65363)
+		go_left(g);
 }
 
 int	manage_key(int key, t_general *g)
