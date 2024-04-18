@@ -6,11 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:53:03 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/16 13:55:34 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head_cube/cube.h"
+#include "../cube.h"
 
 int	cont_error_check(int i, int j, char **v)
 {

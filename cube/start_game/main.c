@@ -6,30 +6,37 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/17 14:54:59 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/18 18:50:12 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head_cube/cube.h"
+#include "../cube.h"
 
+/*
+(bpp) bit per pixel
+(size_l) dimensione immagine
+(endian) indica il modo in cui
+i bit vengono memorizzati con un
+valore numerico
+*/
 void	start_cube(t_general *g)
 {
 	init_game(g);
+	g->posx = (double)g->px;
+	g->posy = (double)g->py;
 	if (g->p_view == 0)
 	{
 		printf("Error\n(missing or invalid player)\n");
 		end_program(g);
 	}
-	buffer(g, 0, 0);
-	texture(g, 0, 0);
-	g->posx = (double)g->px;
-	g->posy = (double)g->py;
 	g->mlx = mlx_init();
+	buffer(g, 0, 0);
+	texture(g);
 	g->win = mlx_new_window(g->mlx, g->width, g->height, "cube3D");
 	g->img = mlx_new_image(g->mlx, g->width, g->height);
 	g->data = (int *)mlx_get_data_addr(g->img, &g->bpp, &g->size_l, &g->endian);
+	mlx_loop_hook(g->mlx, update_cube, g);
 	mlx_hook(g->win, 17, 1L << 17, end_program, g);
-	update_cube(g);
 	mlx_key_hook(g->win, manage_key, g);
 	mlx_loop(g->mlx);
 }
@@ -38,8 +45,8 @@ void	alloc_g(t_general *g, int c, char **v)
 {
 	g->c = c;
 	g->v = v;
-	g->width = 800;
-	g->height = 600;
+	g->width = 640;
+	g->height = 480;
 	g->mlx = 0;
 	g->win = 0;
 	g->l = 0;
@@ -49,9 +56,9 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->x = 0;
 	g->y = 0;
 	g->p_view = 0;
-	g->dirx = -1;
-	g->diry = 0;
-	g->planex = 0;
+	g->dirx = -1.0;
+	g->diry = 0.0;
+	g->planex = 0.0;
 	g->planey = 0.66;
 	g->movespeed = 0.50;
 	g->rotspeed = 0.50;

@@ -6,11 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:59:35 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/17 14:30:30 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head_cube/cube.h"
+#include "../cube.h"
 
 /*
 resetta buffer di immagine

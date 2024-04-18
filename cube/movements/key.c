@@ -6,11 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:22:38 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/17 11:40:56 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head_cube/cube.h"
+#include "../cube.h"
 /*dirx y direzione della telecameta
 planex y manipola la direzione dello
 visuale in prospettivo col piano*/

@@ -6,11 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:34:00 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/17 11:24:20 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head_cube/cube.h"
+#include "../cube.h"
 
 void	go_north(t_general *g)
 {

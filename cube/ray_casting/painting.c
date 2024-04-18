@@ -6,11 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:11:24 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/17 15:01:05 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../head_cube/cube.h"
+#include "../cube.h"
 
 /*
 ciclo la texture fino alla fine della schermata

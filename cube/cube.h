@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/17 14:59:39 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/18 18:40:15 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,15 @@
 #  define PG 3.14159265358979323846
 #  define RED 0xFF0000
 #  define GREEN 0x00FF00
-#  define WALL_DOWN "../image/Wall_Down.xpm"
-#  define WALL_UP "../image/Wall_Up.xpm"
-#  define WALL_LEFT "../image/Wall_Left.xpm"
-#  define WALL_RIGHT "../image/Wall_Right.xpm"
+#  define WU "image/Walls/WallD.xpm"
+#  define WL "image/Walls/WallL.xpm"
+#  define WR "image/Walls/WallR.xpm"
+#  define WD "image/Walls/WallU.xpm"
+#  define SKY "image/FloorSky/Sky.xpm"
+#  define FLOOR "image/FloorSky/Floor.xpm"
 # endif
 
-# include "../minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stddef.h>
@@ -45,6 +47,7 @@ typedef struct s_general
 	char	**v;
 	char	**cubed;
 	int		**buf;
+	int		**texture;
 	int		*data;
 	char	*l;
 	void	*mlx;
@@ -78,7 +81,6 @@ typedef struct s_general
 	int		endian;
 	int		img_width;
 	int		img_height;
-	int		texture[8][64 * 64];
 	double	wallx;
 	double	step;
 	double	texpos;
@@ -105,7 +107,7 @@ typedef struct s_general
 }			t_general;
 
 void		buffer(t_general *g, int i, int j);
-void		texture(t_general *g, int x, int y);
+void		texture(t_general *g);
 void		painting(t_general *g, int x);
 void		go_south(t_general *g);
 void		go_north(t_general *g);
