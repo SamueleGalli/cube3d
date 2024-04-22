@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:53:03 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/22 11:23:44 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/22 14:34:53 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	check_error(char **v, int i)
 		return (1);
 	return (0);
 }
-
 
 int	cont_map_error(t_general *g)
 {
