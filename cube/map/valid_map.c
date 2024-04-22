@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:30:30 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/22 11:21:00 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ int	is_valid(t_general *g)
 
 	i = 0;
 	j = 0;
-	copy_cubed(g);
 	while (g->cubed[j] != 0)
 	{
 		while (g->cubed[j][i] != 0)
@@ -106,5 +105,6 @@ int	is_valid(t_general *g)
 		i = 0;
 		j++;
 	}
+	recopy(g);
 	return (1);
 }

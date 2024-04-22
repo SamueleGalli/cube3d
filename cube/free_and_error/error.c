@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:53:03 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/22 11:23:44 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,42 @@ int	check_error(char **v, int i)
 	if (cont_error_check(i, j, v) == 1)
 		return (1);
 	return (0);
+}
+
+
+int	cont_map_error(t_general *g)
+{
+	if (is_valid(g) == 0)
+	{
+		printf("Error\n(map not closed by walls)");
+		return (1);
+	}
+	else
+		return (0);
+}
+
+int	map_error(t_general *g)
+{
+	if (g->x_end == -1 && g->y_end == -1)
+	{
+		printf("Error\n(map must be not empty)");
+		return (1);
+	}
+	else if (g->invalid_maxp > 1)
+	{
+		printf("Error\n(too many players)\n");
+		return (1);
+	}
+	else if (g->invalid_sign > 0)
+	{
+		printf("Error\n(invalid sign)\n");
+		return (1);
+	}
+	else if (g->p_view == 0)
+	{
+		printf("Error\n(missing or invalid player)\n");
+		return (1);
+	}
+	else
+		return (cont_map_error(g));
 }

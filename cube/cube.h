@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/18 18:40:15 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/22 12:13:13 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@
 #  define PG 3.14159265358979323846
 #  define RED 0xFF0000
 #  define GREEN 0x00FF00
-#  define WU "image/Walls/WallD.xpm"
-#  define WL "image/Walls/WallL.xpm"
-#  define WR "image/Walls/WallR.xpm"
-#  define WD "image/Walls/WallU.xpm"
-#  define SKY "image/FloorSky/Sky.xpm"
-#  define FLOOR "image/FloorSky/Floor.xpm"
+#  define WD "cube/image/Walls/WallD.xpm"
+#  define WL "cube/image/Walls/WallL.xpm"
+#  define WR "cube/image/Walls/WallR.xpm"
+#  define WU "cube/image/Walls/WallU.xpm"
+#  define SKY "cube/image/FloorSky/Sky.xpm"
+#  define FLOOR "cube/image/FloorSky/Floor.xpm"
 # endif
 
 # include "minilibx-linux/mlx.h"
@@ -77,6 +77,8 @@ typedef struct s_general
 	int		texx;
 	int		texy;
 	int		bpp;
+	int		invalid_sign;
+	int		invalid_maxp;
 	int		size_l;
 	int		endian;
 	int		img_width;
@@ -123,9 +125,9 @@ void		alloc_map(t_general *g, int i);
 void		copy_cubed(t_general *g);
 void		free_matrix(char **mat);
 void		recopy(t_general *g);
-
 size_t		ft_strlen_g(const char *s);
 
+int			map_error(t_general *g);
 int			update_cube(t_general *g);
 int			ft_mat_len(char **mat);
 int			ft_strcmp(char *s, char *s2);

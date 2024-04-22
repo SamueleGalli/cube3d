@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/22 11:21:04 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,11 @@ void	init_game(t_general *g)
 	i = getting_line(g, 0);
 	g->fd = open(g->v[1], O_RDONLY);
 	alloc_map(g, i);
-	if (is_valid(g) == 0)
-	{
-		printf("Error\n(map not closed by walls)");
-		end_program(g);
-	}
-	recopy(g);
 	coordinate_player(g);
 	angle_view(g);
+	copy_cubed(g);
+	if (map_error(g) == 1)
+		end_program(g);
 	g->x = 0;
 	g->y = 0;
 }

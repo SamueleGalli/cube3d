@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/18 18:50:12 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/22 11:53:21 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,6 @@ void	start_cube(t_general *g)
 	init_game(g);
 	g->posx = (double)g->px;
 	g->posy = (double)g->py;
-	if (g->p_view == 0)
-	{
-		printf("Error\n(missing or invalid player)\n");
-		end_program(g);
-	}
 	g->mlx = mlx_init();
 	buffer(g, 0, 0);
 	texture(g);
@@ -48,6 +43,8 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->width = 640;
 	g->height = 480;
 	g->mlx = 0;
+	g->invalid_sign = 0;
+	g->invalid_maxp = 0;
 	g->win = 0;
 	g->l = 0;
 	g->rebuf = 0;
