@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/22 11:53:21 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/23 14:58:21 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	start_cube(t_general *g)
 void	alloc_g(t_general *g, int c, char **v)
 {
 	g->c = c;
+	g->img = 0;
 	g->v = v;
 	g->width = 640;
 	g->height = 480;
@@ -48,6 +49,8 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->win = 0;
 	g->l = 0;
 	g->rebuf = 0;
+	g->buf = 0;
+	g->texture = 0;
 	g->tmp = 0;
 	g->cubed = 0;
 	g->x = 0;

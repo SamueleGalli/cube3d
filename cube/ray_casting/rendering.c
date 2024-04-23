@@ -6,32 +6,25 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:59:35 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/23 14:58:00 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
 /*
-resetta buffer di immagine
+inizializza buf a 0
 */
 void	rebuf_calc(t_general *g)
 {
 	if (g->rebuf == 1)
 	{
-		g->x = 0;
-		while (g->x < g->height)
-		{
-			g->y = 0;
-			while (g->y < g->width)
-				g->buf[g->x][g->y++] = 0;
-			g->x++;
-		}
+		ft_memset(g->buf, 0, g->height * g->width * sizeof(int));
 		g->rebuf = 0;
 	}
 }
 /*
-associa il buffer all'immagine per disegnarla su schermata
+associa il buffer all'immagine per disegnarla su schermo
 */
 
 void	draw(t_general *g)
@@ -56,6 +49,7 @@ int	update_cube(t_general *g)
 
 	x = 0;
 	rebuf_calc(g);
+	floor_cel_casting(g);
 	while (x < g->width)
 	{
 		initialize_ray(g, x);

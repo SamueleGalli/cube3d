@@ -4,12 +4,12 @@ MLXFLAG = -lmlx -lX11 -lXext -lm -Lcube/minilibx-linux
 NAME = cube3D
 SRC = 	cube/start_game/main.c \
 		cube/start_game/start_game.c \
-		cube/start_game/texturing.c \
 		cube/map/valid_map.c \
 		cube/map/alloc_map.c \
 		cube/map/get_next_line.c \
 		cube/map/get_next_line_utils.c \
 		cube/help/ausiliary.c \
+		cube/help/ft_memset.c \
 		cube/help/ft_mat_len.c \
 		cube/help/ft_strcpy.c \
 		cube/help/ft_strlcpy.c \
@@ -17,8 +17,10 @@ SRC = 	cube/start_game/main.c \
 		cube/help/ft_substr.c \
 		cube/help/ft_strlen.c \
 		cube/ray_casting/rendering.c \
+		cube/ray_casting/texturing.c \
 		cube/ray_casting/raycasting.c \
 		cube/ray_casting/painting.c \
+		cube/ray_casting/floor_and_ceiling.c \
    		cube/movements/key.c \
 		cube/movements/key_pressed.c \
 		cube/free_and_error/free.c \

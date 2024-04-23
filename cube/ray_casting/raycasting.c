@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:28:46 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/23 14:35:04 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	checking_ray(t_general *g)
 
 /*
 traccia un raggio cercando 
-il muro di in cella
+il muro da colpire
 l'if else indica dove si muove il raggio
 */
 void	hitting(t_general *g)
@@ -115,18 +115,4 @@ void	distance(t_general *g)
 	g->drawend = g->lineheight / 2 + g->height / 2;
 	if (g->drawend >= g->height)
 		g->drawend = g->height - 1;
-}
-
-/*
-disenga un pixel alla volta partendo da drawstart
-fino a drawend del colore definito in g->color
-verticalmente sullo schermo
-*/
-void	verline(t_general *g, int i)
-{
-	while (g->drawstart <= g->drawend)
-	{
-		mlx_pixel_put(g->mlx, g->win, i, g->drawstart, g->color);
-		g->drawstart++;
-	}
 }

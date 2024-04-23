@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:11:24 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/23 14:57:32 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,9 @@ void	texturing(t_general *g, int x)
 	y = g->drawstart;
 	while (y < g->drawend)
 	{
-		g->texy = (int)(g->texpos) & (64 - 1);
+		g->texy = (int)(g->texpos) & (g->img_height - 1);
 		g->texpos += g->step;
-		printf("%d\n", g->texy);
-		g->color = g->texture[g->texnum][g->texy * 64 + g->texx];
-		if (g->side == 1)
-			g->color = (g->color >> 1) & 8355711;
+		g->color = g->texture[g->texnum][g->texy * g->img_height + g->texx];
 		g->buf[y][x] = g->color;
 		g->rebuf = 1;
 		y++;
@@ -62,12 +59,14 @@ void	painting(t_general *g, int x)
 		g->wallx = g->posy + g->perpwalldist * g->raydiry;
 	else
 		g->wallx = g->posx + g->perpwalldist * g->raydirx;
-	g->texx = (int)(g->wallx * (double)64);
+	g->wallx -= floor(g->wallx);
+	g->texx = (int)(g->wallx * (double)g->img_width);
 	if (g->side == 0 && g->raydirx > 0)
-		g->texx = 64 - g->texx - 1;
+		g->texx = g->img_width - g->texx - 1;
 	if (g->side == 1 && g->raydiry < 0)
-		g->texx = 64 - g->texx - 1;
-	g->step = 1.0 * 64 / g->lineheight;
+		g->texx = g->img_width - g->texx - 1;
+	g->step = 1.0 * g->img_height / g->lineheight;
 	g->texpos = (g->drawstart - g->height / 2 + g->lineheight / 2) * g->step;
 	texturing(g, x);
+	floor_casting(g, x);
 }
