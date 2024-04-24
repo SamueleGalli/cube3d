@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/22 14:34:44 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/24 15:16:32 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,31 @@ void	alloc_cube(t_general *g, int j)
 	g->cubed[j][i] = '\0';
 }
 
-void	check_max_p(t_general *g, int i)
+void	cont_alloc_map(t_general *g)
 {
-	while (g->l[i] != '\0' && g->l[i] != '\n')
-	{
-		if (g->l[i] == 'N' || g->l[i] == 'S' || g->l[i] == 'E' || \
-			g->l[i] == 'W')
-			g->invalid_maxp++;
-		i++;
-	}
+	if (g->l[0] == 'F')
+		flooring(g);
+	else if (g->l[0] == 'C')
+		ceiling(g);
+	else if (g->l[0] == 'E' || g->l[0] == 'N' || g->l[0] == 'S' || \
+	g->l[0] == 'W')
+		coordinate(g);
 }
 
-void	check_invalid_char(t_general *g, int i)
+int	while_map(t_general *g, int j)
 {
-	while (g->l[i] != '\0' && g->l[i] != '\n')
+	if (g->l[0] != 'F' && g->l[0] != 'C' && g->l[0] != 'E' && \
+		g->l[0] != 'N' && g->l[0] != 'S' && g->l[0] != 'W')
 	{
-		if (g->l[i] != 'N' && g->l[i] != 'S' && g->l[i] != 'E' && \
-		g->l[i] != 'W' && g->l[i] != '1' && g->l[i] != '0')
-			g->invalid_sign++;
-		i++;
+		g->cubed[j] = (char *)malloc(sizeof(char) * (ft_strlen(g->l) + 1));
+		check_max_p(g, 0);
+		check_invalid_char(g, 0);
+		alloc_cube(g, j);
+		j++;
 	}
+	else
+		cont_alloc_map(g);
+	return (j);
 }
 
 void	alloc_map(t_general *g, int i)
@@ -52,34 +57,14 @@ void	alloc_map(t_general *g, int i)
 	int	j;
 
 	j = 0;
-	g->cubed = (char **)malloc(sizeof(char *) * i);
+	g->cubed = (char **)malloc(sizeof(char *) * (i + 1));
 	while (j < i)
 	{
 		g->l = get_next_line(g->fd);
-		if (g->l == 0)
-			break ;
-		g->cubed[j] = (char *)malloc(sizeof(char) * (ft_strlen(g->l) + 1));
-		check_max_p(g, 0);
-		check_invalid_char(g, 0);
-		alloc_cube(g, j);
+		j = while_map(g, j);
 		free(g->l);
-		j++;
 	}
-	g->cubed[j] = 0;
+	g->cubed[j] = NULL;
 	g->x_end = (ft_strlen(g->cubed[0]) - 1);
 	g->y_end = (ft_mat_len(g->cubed) - 1);
-}
-
-int	getting_line(t_general *g, int i)
-{
-	g->l = get_next_line(g->fd);
-	free(g->l);
-	i++;
-	while (g->l != 0)
-	{
-		g->l = get_next_line(g->fd);
-		free(g->l);
-		i++;
-	}
-	return (i);
 }

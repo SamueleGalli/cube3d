@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:11:24 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/23 14:57:32 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/24 14:47:04 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,20 @@ void	texturing(t_general *g, int x)
 	{
 		g->texy = (int)(g->texpos) & (g->img_height - 1);
 		g->texpos += g->step;
-		g->color = g->texture[g->texnum][g->texy * g->img_height + g->texx];
+		if (g->side == 0 && g->mapx >= g->posx)
+			g->color = g->texture[0][g->texy * g->img_height + g->texx];
+		else if (g->side == 0 && g->mapx < g->posx)
+			g->color = g->texture[1][g->texy * g->img_height + g->texx];
+		else if (g->side == 1 && g->mapy >= g->posy)
+			g->color = g->texture[2][g->texy * g->img_height + g->texx];
+		else
+			g->color = g->texture[3][g->texy * g->img_height + g->texx];
 		g->buf[y][x] = g->color;
 		g->rebuf = 1;
 		y++;
 	}
 }
 /*
-(texnum) indica quale texture verra utilizzata per disengare
-la parete
 (wallx) indica la distanza del player dal muro
 se (side == 0) indica se a colpito una 
 parete verticale o orizzontale
@@ -52,9 +57,8 @@ in modo corretto nella parete
 (tespos) punto di partenza per disegnare la texture
 */
 
-void	painting(t_general *g, int x)
+/*void	painting(t_general *g, int x)
 {
-	g->texnum = g->cubed[g->mapy][g->mapx];
 	if (g->side == 0)
 		g->wallx = g->posy + g->perpwalldist * g->raydiry;
 	else
@@ -70,3 +74,4 @@ void	painting(t_general *g, int x)
 	texturing(g, x);
 	floor_casting(g, x);
 }
+*/

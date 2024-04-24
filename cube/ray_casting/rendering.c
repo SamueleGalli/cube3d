@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:59:35 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/23 14:58:00 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/24 14:33:43 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,19 @@ inizializza buf a 0
 */
 void	rebuf_calc(t_general *g)
 {
+	int	i;
+	int	j;
+
+	i = 0;
 	if (g->rebuf == 1)
 	{
-		ft_memset(g->buf, 0, g->height * g->width * sizeof(int));
+		while (i < g->height)
+		{
+			j = 0;
+			while (j < g->width)
+				g->buf[i][j++] = 0;
+			i++;
+		}
 		g->rebuf = 0;
 	}
 }
@@ -56,9 +66,9 @@ int	update_cube(t_general *g)
 		checking_ray(g);
 		hitting(g);
 		distance(g);
-		painting(g, x);
+		//painting(g, x);
 		x++;
 	}
-	draw(g);
+	//draw(g);
 	return (0);
 }

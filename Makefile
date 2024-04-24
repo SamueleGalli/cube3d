@@ -8,8 +8,9 @@ SRC = 	cube/start_game/main.c \
 		cube/map/alloc_map.c \
 		cube/map/get_next_line.c \
 		cube/map/get_next_line_utils.c \
+		cube/map/coordinate_floor_ceiling.c \
+		cube/map/error_map.c \
 		cube/help/ausiliary.c \
-		cube/help/ft_memset.c \
 		cube/help/ft_mat_len.c \
 		cube/help/ft_strcpy.c \
 		cube/help/ft_strlcpy.c \

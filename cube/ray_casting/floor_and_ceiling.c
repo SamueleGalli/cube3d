@@ -6,11 +6,12 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 12:22:32 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/23 14:56:28 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/24 15:32:22 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
+
 /*
 disegna fino all'altezza dello schermo
 (g->currentdist) distanza dal piano del pavimento
@@ -20,7 +21,7 @@ disegna fino all'altezza dello schermo
 (g->checkerboardpattern)
 */
 
-void	floor_cont_casting(t_general *g, int y, int x)
+/*void	floor_cont_casting(t_general *g, int y, int x)
 {
 	while (y < g->height)
 	{
@@ -37,7 +38,7 @@ void	floor_cont_casting(t_general *g, int y, int x)
 		* g->floortexy + g->floortexx];
 		y++;
 	}
-}
+}*/
 
 /*
 (g->side == 0 && g->raydirx > 0) intersezione
@@ -49,9 +50,8 @@ col muro verso sotto
 (ultimo caso)intersezione
 col muro verso sopra
 (distwall) uguale la distanza dei muri
-
 */
-void	floor_casting(t_general *g, int x)
+/*void	floor_casting(t_general *g, int x)
 {
 	if (g->side == 0 && g->raydirx > 0)
 	{
@@ -78,7 +78,7 @@ void	floor_casting(t_general *g, int x)
 	if (g->drawend < 0)
 		g->drawend = g->height;
 	floor_cont_casting(g, g->drawend + 1, x);
-}
+}*/
 
 /*
 ciclo riga per riga lo schermo
@@ -91,7 +91,7 @@ dell'immagine
 (color) colore del pavimento
 imposto colore soffittoe pavimento
 */
-void	cont_floor_cel_casting(t_general *g, int x, int y)
+/*void	cont_floor_cel_casting(t_general *g, int x, int y)
 {
 	while (x < g->width)
 	{
@@ -111,7 +111,7 @@ void	cont_floor_cel_casting(t_general *g, int x, int y)
 		g->buf[g->height - 1 - y][x] = g->color;
 		x++;
 	}
-}
+}*/
 
 /*
 ciclo riga per riga lo schermo
@@ -125,7 +125,7 @@ calcolo direzione del raggio in orizzontale e verticale
 orizzontale e verticale
 (g->floorx, g->floory) posizione pavimento x,y
 */
-void	floor_cel_casting(t_general *g)
+/*void	floor_cel_casting(t_general *g)
 {
 	int	y;
 
@@ -144,6 +144,34 @@ void	floor_cel_casting(t_general *g)
 		g->floorx = g->posx + g->rowdistance * g->raydirx0;
 		g->floory = g->posy + g->rowdistance * g->raydiry0;
 		cont_floor_cel_casting(g, 0, y);
+		y++;
+	}
+}*/
+
+unsigned int	convert_color(int r, int g, int b)
+{
+	return (r << 16 | g << 8 | b);
+}
+
+void	floor_cel_casting(t_general *g)
+{
+	int				y;
+	int				x;
+	unsigned int	c_color;
+	unsigned int	f_color;
+
+	y = 0;
+	c_color = convert_color(*g->floor[0], *g->floor[1], *g->floor[2]);
+	f_color = convert_color(*g->sky[0], *g->sky[1], *g->sky[2]);
+	while (y < g->height)
+	{
+		x = 0;
+		while (x < g->width)
+		{
+			g->buf[y][x] = f_color;
+			g->buf[g->height - y - 1][x] = c_color;
+			x++;
+		}
 		y++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:50:02 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/23 11:02:51 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/24 15:31:09 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,11 @@ void	load_img(t_general *g, int *texture, char *path)
 
 	y = 0;
 	g->img = mlx_xpm_file_to_image(g->mlx, path, &g->img_width, &g->img_height);
+	if (g->img == NULL)
+	{
+		printf("Error\n(invalid image)\n");
+		end_program(g);
+	}
 	g->data = (int *)mlx_get_data_addr(g->img, &g->bpp, &g->size_l, &g->endian);
 	while (y < g->img_height)
 	{
@@ -71,9 +76,9 @@ void	texture(t_general *g)
 	int	i;
 	int	j;
 
-	g->texture = (int **)malloc(sizeof(int *) * 6);
+	g->texture = (int **)malloc(sizeof(int *) * 3);
 	i = 0;
-	while (i < 6)
+	while (i < 3)
 	{
 		g->texture[i] = (int *)malloc(sizeof(int) * (100 * 100));
 		j = 0;
@@ -81,10 +86,13 @@ void	texture(t_general *g)
 			g->texture[i][j++] = 0;
 		i++;
 	}
-	load_img(g, g->texture[0], WU);
-	load_img(g, g->texture[1], WL);
-	load_img(g, g->texture[2], WR);
-	load_img(g, g->texture[3], WD);
-	load_img(g, g->texture[4], FLOOR);
-	load_img(g, g->texture[5], SKY);
+	if (g->coordinate == NULL)
+	{
+		printf("Error\n(invalid path for textures)\n");
+		end_program(g);
+	}
+	load_img(g, g->texture[0], g->coordinate[3]);
+	load_img(g, g->texture[1], g->coordinate[2]);
+	load_img(g, g->texture[2], g->coordinate[0]);
+	load_img(g, g->texture[3], g->coordinate[1]);
 }

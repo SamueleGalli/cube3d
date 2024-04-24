@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/23 13:09:15 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/24 15:33:46 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@
 #  define A 97
 #  define S 115
 #  define D 100
-#  define PG 3.14159265358979323846
-#  define RED 0xFF0000
-#  define GREEN 0x00FF00
-#  define WD "cube/image/Walls/WallD.xpm"
-#  define WL "cube/image/Walls/WallL.xpm"
-#  define WR "cube/image/Walls/WallR.xpm"
-#  define WU "cube/image/Walls/WallU.xpm"
-#  define SKY "cube/image/FloorSky/Sky.xpm"
-#  define FLOOR "cube/image/FloorSky/Floor.xpm"
 # endif
 
 # include "minilibx-linux/mlx.h"
@@ -48,18 +39,21 @@ typedef struct s_general
 	char	**cubed;
 	int		**buf;
 	int		**texture;
+	int		**sky;
+	int		**floor;
 	int		*data;
 	char	*l;
+	char	**coordinate;
 	void	*mlx;
 	void	*win;
 	void	*img;
 	char	p_view;
 	int		width;
 	int		height;
-	int		c;
 	int		rebuf;
 	int		j;
 	int		fd;
+	int		c;
 	int		x;
 	int		y;
 	int		px;
@@ -73,7 +67,6 @@ typedef struct s_general
 	int		stepy;
 	int		hit;
 	int		side;
-	int		texnum;
 	int		texx;
 	int		texy;
 	int		bpp;
@@ -136,7 +129,9 @@ typedef struct s_general
 	float	floory;
 }			t_general;
 
-void		*ft_memset(void *s, int c, size_t len);
+void		flooring(t_general *g);
+void		ceiling(t_general *g);
+void		coordinate(t_general *g);
 void		floor_casting(t_general *g, int x);
 void		floor_cel_casting(t_general *g);
 void		buffer(t_general *g, int i, int j);
@@ -155,6 +150,8 @@ void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);
 void		copy_cubed(t_general *g);
 void		free_matrix(char **mat);
+void		check_max_p(t_general *g, int i);
+void		check_invalid_char(t_general *g, int i);
 void		recopy(t_general *g);
 size_t		ft_strlen_g(const char *s);
 
@@ -167,7 +164,6 @@ int			ft_strlcpy(char *dest, char *src, int size);
 int			ft_strlen(char *s);
 int			manage_key(int key, t_general *g);
 int			end_program(t_general *g);
-int			getting_line(t_general *g, int i);
 int			is_valid(t_general *g);
 int			end_mat(char **mat);
 char		*ft_substr(char *s, int start, int len);

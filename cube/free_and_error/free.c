@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:42:24 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/23 11:08:28 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/24 15:29:27 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ void	free_int(int **mat, int max)
 	free(mat);
 }
 
+void	cont_free(t_general *g)
+{
+	if (g->buf != 0)
+		free_int(g->buf, g->height);
+	if (g->texture != 0)
+		free_int(g->texture, 3);
+	if (g->coordinate != 0)
+		free_matrix(g->coordinate);
+}
+
 int	end_program(t_general *g)
 {
 	if (g == 0)
@@ -55,10 +65,9 @@ int	end_program(t_general *g)
 		mlx_destroy_window(g->mlx, g->win);
 		mlx_destroy_display(g->mlx);
 	}
-	if (g->buf != 0)
-		free_int(g->buf, g->height);
-	if (g->texture != 0)
-		free_int(g->texture, 6);
+	else
+		mlx_destroy_display(g->mlx);
+	cont_free(g);
 	free(g->mlx);
 	free(g);
 	exit(0);

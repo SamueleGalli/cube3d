@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:28:46 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/23 14:35:04 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/24 12:21:05 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	checking_ray(t_general *g)
 	else
 	{
 		g->stepx = 1;
-		g->sidedistx = (g->mapx + 1.0 - g->posx) * g->deltadistx;
+		g->sidedistx = (g->mapx + 1.0f - g->posx) * g->deltadistx;
 	}
 	if (g->raydiry < 0)
 	{
@@ -72,7 +72,7 @@ l'if else indica dove si muove il raggio
 */
 void	hitting(t_general *g)
 {
-	while (g->hit == 0)
+	while (1)
 	{
 		if (g->sidedistx < g->sidedisty)
 		{
@@ -86,8 +86,11 @@ void	hitting(t_general *g)
 			g->mapy += g->stepy;
 			g->side = 1;
 		}
-		if (g->cubed[g->mapy][g->mapx] == '1')
+		if (g->cubed[g->mapx][g->mapy] == '1')
+		{
 			g->hit = 1;
+			break ;
+		}
 	}
 }
 /*

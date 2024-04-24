@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/23 14:58:21 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/24 15:32:02 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ valore numerico
 void	start_cube(t_general *g)
 {
 	init_game(g);
-	g->posx = (double)g->px;
-	g->posy = (double)g->py;
+	g->posx = (double)g->py + 0.2f;
+	g->posy = (double)g->px + 0.2f;
 	g->mlx = mlx_init();
 	buffer(g, 0, 0);
 	texture(g);
@@ -36,23 +36,8 @@ void	start_cube(t_general *g)
 	mlx_loop(g->mlx);
 }
 
-void	alloc_g(t_general *g, int c, char **v)
+void	alloc_g_cont(t_general *g)
 {
-	g->c = c;
-	g->img = 0;
-	g->v = v;
-	g->width = 640;
-	g->height = 480;
-	g->mlx = 0;
-	g->invalid_sign = 0;
-	g->invalid_maxp = 0;
-	g->win = 0;
-	g->l = 0;
-	g->rebuf = 0;
-	g->buf = 0;
-	g->texture = 0;
-	g->tmp = 0;
-	g->cubed = 0;
 	g->x = 0;
 	g->y = 0;
 	g->p_view = 0;
@@ -62,6 +47,30 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->planey = 0.66;
 	g->movespeed = 0.50;
 	g->rotspeed = 0.50;
+}
+
+void	alloc_g(t_general *g, int c, char **v)
+{
+	g->c = c;
+	g->img = 0;
+	g->v = v;
+	g->j = 0;
+	g->width = 640;
+	g->height = 480;
+	g->mlx = 0;
+	g->invalid_sign = 0;
+	g->invalid_maxp = 0;
+	g->win = 0;
+	g->l = 0;
+	g->rebuf = 0;
+	g->buf = 0;
+	g->sky = 0;
+	g->floor = 0;
+	g->coordinate = 0;
+	g->texture = 0;
+	g->tmp = 0;
+	g->cubed = 0;
+	alloc_g_cont(g);
 }
 
 int	main(int c, char **v)
