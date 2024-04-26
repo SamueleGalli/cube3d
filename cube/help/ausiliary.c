@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:36:48 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/22 11:18:51 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/26 12:47:09 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,28 @@ int	end_mat(char **mat)
 	return (i);
 }
 
+void	cont_copy_cubed(t_general *g)
+{
+	g->y = 0;
+	g->tmp[g->x] = (char *)malloc(sizeof(char) * \
+	(ft_strlen(g->cubed[g->x]) + 1));
+	while (g->cubed[g->x][g->y] != 0)
+	{
+		g->tmp[g->x][g->y] = g->cubed[g->x][g->y];
+		g->y++;
+	}
+	g->tmp[g->x][g->y] = 0;
+	g->y = 0;
+}
+
 void	copy_cubed(t_general *g)
 {
 	g->tmp = (char **)malloc(sizeof(char *) * (end_mat(g->cubed) + 2));
-	g->x = -1;
-	while (g->cubed[++g->x] != 0)
+	g->x = 0;
+	while (g->cubed[g->x] != 0)
 	{
-		g->tmp[g->x] = (char *)malloc(sizeof(char) * \
-		(ft_strlen(g->cubed[g->x]) + 1));
-		while (g->cubed[g->x][g->y] != 0)
-		{
-			g->tmp[g->x][g->y] = g->cubed[g->x][g->y];
-			g->y++;
-		}
-		g->tmp[g->x][g->y] = 0;
-		g->y = 0;
+		cont_copy_cubed(g);
+		g->x++;
 	}
 	g->tmp[g->x] = NULL;
 	g->x = 0;

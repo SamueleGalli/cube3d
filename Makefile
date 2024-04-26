@@ -14,6 +14,7 @@ SRC = 	cube/start_game/main.c \
 		cube/help/ft_mat_len.c \
 		cube/help/ft_strcpy.c \
 		cube/help/ft_strlcpy.c \
+		cube/help/ft_atoi.c \
 		cube/help/ft_strcmp.c \
 		cube/help/ft_substr.c \
 		cube/help/ft_strlen.c \

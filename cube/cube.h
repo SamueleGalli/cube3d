@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/24 15:33:46 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/26 12:03:24 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ typedef struct s_general
 	char	**tmp;
 	char	**v;
 	char	**cubed;
+	char	**sky;
+	char	**floor;
 	int		**buf;
 	int		**texture;
-	int		**sky;
-	int		**floor;
 	int		*data;
 	char	*l;
 	char	**coordinate;
@@ -52,6 +52,9 @@ typedef struct s_general
 	int		height;
 	int		rebuf;
 	int		j;
+	int		i;
+	int		i_coordinate;
+	int		max_line;
 	int		fd;
 	int		c;
 	int		x;
@@ -129,10 +132,10 @@ typedef struct s_general
 	float	floory;
 }			t_general;
 
+int			ft_atoi(const char *str);
 void		flooring(t_general *g);
 void		ceiling(t_general *g);
 void		coordinate(t_general *g);
-void		floor_casting(t_general *g, int x);
 void		floor_cel_casting(t_general *g);
 void		buffer(t_general *g, int i, int j);
 void		texture(t_general *g);

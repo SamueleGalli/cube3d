@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/24 15:32:02 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:21:41 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	alloc_g_cont(t_general *g)
 {
 	g->x = 0;
 	g->y = 0;
+	g->i_coordinate = 0;
 	g->p_view = 0;
 	g->dirx = -1.0;
 	g->diry = 0.0;
@@ -55,8 +56,8 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->img = 0;
 	g->v = v;
 	g->j = 0;
-	g->width = 640;
-	g->height = 480;
+	g->width = 700;
+	g->height = 800;
 	g->mlx = 0;
 	g->invalid_sign = 0;
 	g->invalid_maxp = 0;

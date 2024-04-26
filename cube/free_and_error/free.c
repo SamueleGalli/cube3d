@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:42:24 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/24 15:29:27 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:51:07 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	free_int(int **mat, int max)
 	int	i;
 
 	i = 0;
+	if (mat == 0)
+		return ;
 	while (i < max)
 	{
 		free(mat[i]);
@@ -46,6 +48,10 @@ void	cont_free(t_general *g)
 		free_int(g->texture, 3);
 	if (g->coordinate != 0)
 		free_matrix(g->coordinate);
+	if (g->floor != 0)
+		free_matrix(g->floor);
+	if (g->sky != 0)
+		free_matrix(g->sky);
 }
 
 int	end_program(t_general *g)
@@ -65,7 +71,7 @@ int	end_program(t_general *g)
 		mlx_destroy_window(g->mlx, g->win);
 		mlx_destroy_display(g->mlx);
 	}
-	else
+	else if (g->mlx != 0)
 		mlx_destroy_display(g->mlx);
 	cont_free(g);
 	free(g->mlx);

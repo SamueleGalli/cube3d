@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:52:52 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/24 15:32:54 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:41:06 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,17 @@ int	alloc_int(t_general *g, int j, int i, int b)
 	}
 	if (b == 0)
 	{
-		g->floor[g->j] = (int *)malloc(sizeof(int) * l);
+		g->floor[g->j] = (char *)malloc(sizeof(char) * (l + 1));
 		while (g->l[i] >= '0' && g->l[i] <= '9')
 			g->floor[g->j][j++] = g->l[i++];
+		g->floor[g->j][j] = '\0';
 	}
 	else
 	{
-		g->sky[g->j] = (int *)malloc(sizeof(int) * l);
+		g->sky[g->j] = (char *)malloc(sizeof(char) * (l + 1));
 		while (g->l[i] >= '0' && g->l[i] <= '9')
 			g->sky[g->j][j++] = g->l[i++];
+		g->sky[g->j][j] = '\0';
 	}
 	return (i);
 }
@@ -46,15 +48,18 @@ void	flooring(t_general *g)
 
 	i = 0;
 	j = 0;
-	g->floor = (int **)malloc(sizeof(int *) * 2);
+	g->floor = (char **)malloc(sizeof(char *) * 4);
 	while (g->l[i] != '\0' && g->l[i] != '\n' && g->l[i] != ',')
 	{
 		if (g->l[i] >= '0' && g->l[i] <= '9')
-			i = alloc_int(g, j, i, 0);
+		{
+			i = alloc_int(g, 0, i, 0);
+			g->j++;
+		}
 		j = 0;
-		g->j++;
 		i++;
 	}
+	g->floor[g->j] = NULL;
 	g->j = 0;
 }
 
@@ -65,30 +70,34 @@ void	ceiling(t_general *g)
 
 	i = 0;
 	j = 0;
-	g->sky = (int **)malloc(sizeof(int *) * 2);
+	g->sky = (char **)malloc(sizeof(char *) * 4);
 	while (g->l[i] != '\0' && g->l[i] != '\n' && g->l[i] != ',')
 	{
 		if (g->l[i] >= '0' && g->l[i] <= '9')
-			i = alloc_int(g, j, i, 1);
+		{
+			i = alloc_int(g, 0, i, 1);
+			g->j++;
+		}
 		j = 0;
-		g->j++;
 		i++;
 	}
+	g->sky[g->j] = NULL;
 	g->j = 0;
 }
 
 void	cont_coordinate(t_general *g, int i, int k, int j)
 {
+	g->coordinate[g->i_coordinate] = (char *)malloc(sizeof(char) * (k + 1));
 	while (g->l[i] != '\0' && g->l[i] != '\n')
 	{
-		g->coordinate[g->j] = (char *)malloc(sizeof(char) * k);
-		g->coordinate[g->j][j] = g->l[i];
+		g->coordinate[g->i_coordinate][j] = g->l[i];
 		i++;
 		j++;
 	}
-	g->j++;
-	if (g->j == 4)
-		g->coordinate[g->j] = 0;
+	g->coordinate[g->i_coordinate][j] = '\0';
+	g->i_coordinate++;
+	if (g->i_coordinate == 4)
+		g->coordinate[g->i_coordinate] = 0;
 }
 
 void	coordinate(t_general *g)
@@ -99,7 +108,8 @@ void	coordinate(t_general *g)
 
 	i = 0;
 	k = 0;
-	g->coordinate = (char **)malloc(sizeof(char *) * 4);
+	if (g->coordinate == 0)
+		g->coordinate = (char **)malloc(sizeof(char *) * 5);
 	while (g->l[i] != '\0' && g->l[i] != '\n' && g->l[i] != '.')
 		i++;
 	j = i;

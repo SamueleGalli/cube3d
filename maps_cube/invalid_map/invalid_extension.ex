@@ -1,6 +1,6 @@
-F 0,0,255
+F 220,100,0
 
-C 255,0,0
+C 255,30,0
 
 EA ./cube/image/WallR.xpm
 WE ./cube/image/WallL.xpm

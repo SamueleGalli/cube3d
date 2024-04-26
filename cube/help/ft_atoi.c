@@ -1,35 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_map.c                                        :+:      :+:    :+:   */
+/*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/24 15:14:56 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/26 14:54:44 by sgalli           ###   ########.fr       */
+/*   Created: 2024/04/26 10:29:54 by sgalli            #+#    #+#             */
+/*   Updated: 2024/04/26 14:54:12 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-void	check_max_p(t_general *g, int i)
+int	ft_atoi(const char *str)
 {
-	while (g->l[i] != '\0' && g->l[i] != '\n')
-	{
-		if (g->l[i] == 'N' || g->l[i] == 'S' || g->l[i] == 'E' || \
-			g->l[i] == 'W')
-			g->invalid_maxp++;
-		i++;
-	}
-}
+	int	i;
+	int	s;
+	int	res;
 
-void	check_invalid_char(t_general *g, int i)
-{
-	while (g->l[i] != '\0' && g->l[i] != '\n')
+	i = 0;
+	s = 1;
+	res = 0;
+	while (((str[i] >= '\t') && (str[i] <= '\r')) || (str[i] == ' '))
 	{
-		if (g->l[i] != 'N' && g->l[i] != 'S' && g->l[i] != 'E' && \
-		g->l[i] != 'W' && g->l[i] != '1' && g->l[i] != '0')
-			g->invalid_sign++;
 		i++;
 	}
+	if ((str[i] == '+') || (str[i] == '-'))
+	{
+		if (str[i] == '-')
+		{
+			s *= -1;
+		}
+		i++;
+	}
+	while ((str[i] >= '0') && (str[i] <= '9'))
+	{
+		res = (res * 10) + (str[i] - '0');
+		i++;
+	}
+	return (res * s);
 }

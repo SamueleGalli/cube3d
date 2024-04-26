@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 12:28:46 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/24 12:21:05 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/26 12:27:32 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,12 @@ void	checking_ray(t_general *g)
 traccia un raggio cercando 
 il muro da colpire
 l'if else indica dove si muove il raggio
+dentro if orizzontale
+else verticale
 */
 void	hitting(t_general *g)
 {
-	while (1)
+	while (g->hit != 1)
 	{
 		if (g->sidedistx < g->sidedisty)
 		{
@@ -87,10 +89,7 @@ void	hitting(t_general *g)
 			g->side = 1;
 		}
 		if (g->cubed[g->mapx][g->mapy] == '1')
-		{
 			g->hit = 1;
-			break ;
-		}
 	}
 }
 /*

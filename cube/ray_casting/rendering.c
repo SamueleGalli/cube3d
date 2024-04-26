@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 14:59:35 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/24 14:33:43 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/26 12:37:08 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int	update_cube(t_general *g)
 		checking_ray(g);
 		hitting(g);
 		distance(g);
-		//painting(g, x);
+		painting(g, x);
 		x++;
 	}
-	//draw(g);
+	draw(g);
 	return (0);
 }

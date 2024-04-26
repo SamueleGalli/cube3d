@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 12:11:24 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/24 14:47:04 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/26 12:03:14 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ in modo corretto nella parete
 (tespos) punto di partenza per disegnare la texture
 */
 
-/*void	painting(t_general *g, int x)
+void	painting(t_general *g, int x)
 {
 	if (g->side == 0)
 		g->wallx = g->posy + g->perpwalldist * g->raydiry;
@@ -72,6 +72,4 @@ in modo corretto nella parete
 	g->step = 1.0 * g->img_height / g->lineheight;
 	g->texpos = (g->drawstart - g->height / 2 + g->lineheight / 2) * g->step;
 	texturing(g, x);
-	floor_casting(g, x);
 }
-*/

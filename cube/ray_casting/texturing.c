@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:50:02 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/24 15:31:09 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:50:06 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,31 +31,45 @@ void	buffer(t_general *g, int i, int j)
 	}
 }
 
-/*
-(mlx_xpm_file_to_image) carica immagine
-(mlx_get_data_addr) ottiene dati immagine
-copia i dati dell'immagine nell'array texture
-(mlx_destroy_image) elimina immagine
-*/
-void	load_img(t_general *g, int *texture, char *path)
+void	init_texture(t_general *g, char *path, int i)
 {
-	int	y;
-	int	x;
-
-	y = 0;
+	if (g->texture == 0)
+		g->texture = (int **)malloc(sizeof(int *) * 4);
+	if (path == 0)
+	{
+		printf("Error\n(invalid path)\n");
+		end_program(g);
+	}
 	g->img = mlx_xpm_file_to_image(g->mlx, path, &g->img_width, &g->img_height);
 	if (g->img == NULL)
 	{
 		printf("Error\n(invalid image)\n");
 		end_program(g);
 	}
+	g->texture[i] = (int *)malloc(sizeof(int) * \
+	(g->img_width * g->img_height));
 	g->data = (int *)mlx_get_data_addr(g->img, &g->bpp, &g->size_l, &g->endian);
+}
+
+/*
+(mlx_xpm_file_to_image) carica immagine
+(mlx_get_data_addr) ottiene dati immagine
+copia i dati dell'immagine nell'array texture
+(mlx_destroy_image) elimina immagine
+*/
+void	load_img(t_general *g, int i, char *path)
+{
+	int	y;
+	int	x;
+
+	init_texture(g, path, i);
+	y = 0;
 	while (y < g->img_height)
 	{
 		x = 0;
 		while (x < g->img_width)
 		{
-			texture[g->img_width * y + x] = g->data[g->img_width * y + x];
+			g->texture[i][g->img_width * y + x] = g->data[g->img_width * y + x];
 			x++;
 		}
 		y++;
@@ -73,26 +87,21 @@ le carico e salvo la immagine raccolta in texture
 */
 void	texture(t_general *g)
 {
-	int	i;
-	int	j;
-
-	g->texture = (int **)malloc(sizeof(int *) * 3);
-	i = 0;
-	while (i < 3)
+	if (g->floor == 0 || g->sky == 0)
 	{
-		g->texture[i] = (int *)malloc(sizeof(int) * (100 * 100));
-		j = 0;
-		while (j < 100 * 100)
-			g->texture[i][j++] = 0;
-		i++;
-	}
-	if (g->coordinate == NULL)
-	{
-		printf("Error\n(invalid path for textures)\n");
+		printf("Error\n(missing floor/sky color)\n");
 		end_program(g);
 	}
-	load_img(g, g->texture[0], g->coordinate[3]);
-	load_img(g, g->texture[1], g->coordinate[2]);
-	load_img(g, g->texture[2], g->coordinate[0]);
-	load_img(g, g->texture[3], g->coordinate[1]);
+	if (g->coordinate == 0)
+	{
+		printf("Error\n(missing coordinate/s)\n");
+		end_program(g);
+	}
+	else
+	{
+		load_img(g, 0, g->coordinate[0]);
+		load_img(g, 1, g->coordinate[1]);
+		load_img(g, 2, g->coordinate[2]);
+		load_img(g, 3, g->coordinate[3]);
+	}
 }

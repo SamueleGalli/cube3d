@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/24 15:16:32 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:54:54 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,44 +27,47 @@ void	alloc_cube(t_general *g, int j)
 
 void	cont_alloc_map(t_general *g)
 {
-	if (g->l[0] == 'F')
+	if (g->l != 0 && g->l[0] == 'F')
 		flooring(g);
-	else if (g->l[0] == 'C')
+	else if (g->l != 0 && g->l[0] == 'C')
 		ceiling(g);
-	else if (g->l[0] == 'E' || g->l[0] == 'N' || g->l[0] == 'S' || \
-	g->l[0] == 'W')
+	else if (g->l != 0 && (g->l[0] == 'E' || g->l[0] == 'N' || \
+	g->l[0] == 'S' || g->l[0] == 'W'))
 		coordinate(g);
 }
 
-int	while_map(t_general *g, int j)
+int	while_map(t_general *g, int i)
 {
-	if (g->l[0] != 'F' && g->l[0] != 'C' && g->l[0] != 'E' && \
-		g->l[0] != 'N' && g->l[0] != 'S' && g->l[0] != 'W')
+	if (g->l != 0 && g->l[0] != '\n' && g->l[0] != 'F' \
+	&& g->l[0] != 'C' && g->l[0] != 'E' && g->l[0] != 'N' \
+	&& g->l[0] != 'S' && g->l[0] != 'W')
 	{
-		g->cubed[j] = (char *)malloc(sizeof(char) * (ft_strlen(g->l) + 1));
+		g->cubed[g->i] = (char *)malloc(sizeof(char) * (ft_strlen(g->l) + 1));
 		check_max_p(g, 0);
 		check_invalid_char(g, 0);
-		alloc_cube(g, j);
-		j++;
+		alloc_cube(g, g->i);
+		g->i++;
 	}
 	else
 		cont_alloc_map(g);
-	return (j);
+	i++;
+	return (i);
 }
 
 void	alloc_map(t_general *g, int i)
 {
-	int	j;
+	int	i2;
 
-	j = 0;
+	i2 = 0;
+	g->i = 0;
 	g->cubed = (char **)malloc(sizeof(char *) * (i + 1));
-	while (j < i)
+	while (i2 < g->max_line)
 	{
 		g->l = get_next_line(g->fd);
-		j = while_map(g, j);
+		i2 = while_map(g, i2);
 		free(g->l);
 	}
-	g->cubed[j] = NULL;
+	g->cubed[g->i] = NULL;
 	g->x_end = (ft_strlen(g->cubed[0]) - 1);
 	g->y_end = (ft_mat_len(g->cubed) - 1);
 }

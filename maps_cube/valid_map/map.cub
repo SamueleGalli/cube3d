@@ -1,3 +1,13 @@
+F 220,50,0
+
+C 255,30,90
+
+EA ./cube/image/WallR.xpm
+WE ./cube/image/WallL.xpm
+SO ./cube/image/WallD.xpm
+NO ./cube/image/WallU.xpm
+
+
 1111111
 1000N01
 1000001
