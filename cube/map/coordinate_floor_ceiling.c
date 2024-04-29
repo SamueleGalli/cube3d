@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 13:52:52 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/26 14:41:06 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/29 12:16:28 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,41 +83,4 @@ void	ceiling(t_general *g)
 	}
 	g->sky[g->j] = NULL;
 	g->j = 0;
-}
-
-void	cont_coordinate(t_general *g, int i, int k, int j)
-{
-	g->coordinate[g->i_coordinate] = (char *)malloc(sizeof(char) * (k + 1));
-	while (g->l[i] != '\0' && g->l[i] != '\n')
-	{
-		g->coordinate[g->i_coordinate][j] = g->l[i];
-		i++;
-		j++;
-	}
-	g->coordinate[g->i_coordinate][j] = '\0';
-	g->i_coordinate++;
-	if (g->i_coordinate == 4)
-		g->coordinate[g->i_coordinate] = 0;
-}
-
-void	coordinate(t_general *g)
-{
-	int	i;
-	int	j;
-	int	k;
-
-	i = 0;
-	k = 0;
-	if (g->coordinate == 0)
-		g->coordinate = (char **)malloc(sizeof(char *) * 5);
-	while (g->l[i] != '\0' && g->l[i] != '\n' && g->l[i] != '.')
-		i++;
-	j = i;
-	while (g->l[j] != '\0' && g->l[j] != '\n')
-	{
-		k++;
-		j++;
-	}
-	j = 0;
-	cont_coordinate(g, i, k, j);
 }

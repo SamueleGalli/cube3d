@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 11:07:42 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/29 14:46:10 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ typedef struct s_general
 	int		*data;
 	char	*l;
 	char	*save;
-	char	**coordinate;
+	char	*east;
+	char	*south;
+	char	*west;
+	char	*north;
 	void	*mlx;
 	void	*win;
 	void	*img;
@@ -54,7 +57,6 @@ typedef struct s_general
 	int		rebuf;
 	int		j;
 	int		i;
-	int		i_coordinate;
 	int		max_line;
 	int		fd;
 	int		c;
@@ -84,6 +86,7 @@ typedef struct s_general
 	int		celly;
 	int		tx;
 	int		ty;
+	int		i_texture;
 	int		floortexture;
 	int		ceilingtexture;
 	int		p;
@@ -133,11 +136,14 @@ typedef struct s_general
 	float	floory;
 }			t_general;
 
-int			ft_atoi(const char *str);
-int			getting_line(t_general *g, int i);
+void		east(t_general *g);
+void		north(t_general *g);
+void		south(t_general *g);
+void		west(t_general *g);
+void		last_zero(int j, int sign, int i, t_general *g);
+void		init_check(int i, int j, t_general *g);
 void		flooring(t_general *g);
 void		ceiling(t_general *g);
-void		coordinate(t_general *g);
 void		floor_cel_casting(t_general *g);
 void		buffer(t_general *g, int i, int j);
 void		texture(t_general *g);
@@ -158,8 +164,13 @@ void		free_matrix(char **mat);
 void		check_max_p(t_general *g, int i);
 void		check_invalid_char(t_general *g, int i);
 void		recopy(t_general *g);
+
 size_t		ft_strlen_g(const char *s);
 
+int			last_check(t_general *g, int i, int j);
+int			ft_atoi(const char *str);
+int			getting_line(t_general *g, int i);
+int			flood_fill(t_general *g, int j, int i);
 int			map_error(t_general *g);
 int			update_cube(t_general *g);
 int			ft_mat_len(char **mat);
@@ -171,6 +182,7 @@ int			manage_key(int key, t_general *g);
 int			end_program(t_general *g);
 int			is_valid(t_general *g);
 int			end_mat(char **mat);
+
 char		*ft_substr(char *s, int start, int len);
 char		*get_next_line(int fd, t_general *g);
 char		*ft_strjoin(char *s1, char *b);

@@ -1,2 +1,5 @@
-texture strane da sitemare
-chekkare mappe non valide
+- chekkare mappe non valide:
+1) invalid one non valida
+1) invalid_wall la apre flood fill da modificare
+- flood fill da sistemare leakka con another_mandatory_map.cub
+- texture su mappe valide non va e lekka texture

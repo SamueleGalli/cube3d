@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 17:42:24 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 10:25:54 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/29 12:23:54 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,15 @@ void	cont_free(t_general *g)
 	if (g->buf != 0)
 		free_int(g->buf, g->height);
 	if (g->texture != 0)
-		free_int(g->texture, 4);
-	if (g->coordinate != 0)
-		free_matrix(g->coordinate);
+		free_int(g->texture, g->i_texture);
+	if (g->east != 0)
+		free(g->east);
+	if (g->west != 0)
+		free(g->west);
+	if (g->north != 0)
+		free(g->north);
+	if (g->south != 0)
+		free(g->south);
 	if (g->floor != 0)
 		free_matrix(g->floor);
 	if (g->sky != 0)

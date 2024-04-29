@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 11:05:54 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/29 12:15:59 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,14 @@ void	cont_alloc_map(t_general *g)
 		flooring(g);
 	else if (g->l != 0 && g->l[0] == 'C')
 		ceiling(g);
-	else if (g->l != 0 && (g->l[0] == 'E' || g->l[0] == 'N' || \
-	g->l[0] == 'S' || g->l[0] == 'W'))
-		coordinate(g);
+	else if (g->l != 0 && g->l[0] == 'E')
+		east(g);
+	else if (g->l != 0 && g->l[0] == 'N')
+		north(g);
+	else if (g->l != 0 && g->l[0] == 'S')
+		south(g);
+	else if (g->l != 0 && g->l[0] == 'W')
+		west(g);
 }
 
 int	while_map(t_general *g, int i)

@@ -1,0 +1,16 @@
+EA ./cube/image/WallR.xpm
+
+F 220,170,0
+NO ./cube/image/WallU.xpm
+
+WE ./cube/image/WallD.xpm
+C 255,10,0
+
+
+111111
+100101
+101001
+1100N1
+111111
+
+SO ./cube/image/WallL.xpm

@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 11:07:56 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/29 14:23:25 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,26 @@
 
 void	invalid_color(t_general *g)
 {
-	if (g->floor[0] != 0 && g->floor[1] != 0 && g->floor[2] != 0 && \
-		g->sky[0] != 0 && g->sky[1] != 0 && g->sky[2] != 0)
+	if (g->floor != 0 && g->sky != 0)
 	{
-		return ;
-	}
-	else
-	{
-		printf("Error\n(invalid color)\n");
-		end_program(g);
+		if (g->floor[0] != 0 && g->floor[1] != 0 && \
+		g->floor[2] != 0 && g->sky[0] != 0 && g->sky[1] != 0 \
+		&& g->sky[2] != 0)
+		{
+			if (ft_atoi(g->floor[0]) > 255 || ft_atoi(g->floor[1]) > 255 || \
+			ft_atoi(g->floor[2]) > 255 || ft_atoi(g->sky[0]) > 255 \
+			|| ft_atoi(g->sky[1]) > 255 || ft_atoi(g->sky[2]) > 255)
+			{
+				printf("Error\n(rgb color to large))\n");
+				end_program(g);
+			}
+			return ;
+		}
+		else
+		{
+			printf("Error\n(invalid color)\n");
+			end_program(g);
+		}
 	}
 }
 
@@ -55,7 +66,6 @@ void	alloc_g_cont(t_general *g)
 {
 	g->x = 0;
 	g->y = 0;
-	g->i_coordinate = 0;
 	g->p_view = 0;
 	g->dirx = -1.0;
 	g->diry = 0.0;
@@ -64,6 +74,10 @@ void	alloc_g_cont(t_general *g)
 	g->movespeed = 0.50;
 	g->rotspeed = 0.20;
 	g->save = 0;
+	g->north = 0;
+	g->south = 0;
+	g->east = 0;
+	g->west = 0;
 }
 
 void	alloc_g(t_general *g, int c, char **v)
@@ -72,6 +86,7 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->img = 0;
 	g->v = v;
 	g->j = 0;
+	g->i_texture = 0;
 	g->width = 700;
 	g->height = 800;
 	g->mlx = 0;
@@ -80,10 +95,10 @@ void	alloc_g(t_general *g, int c, char **v)
 	g->win = 0;
 	g->l = 0;
 	g->rebuf = 0;
+	g->i = 0;
 	g->buf = 0;
 	g->sky = 0;
 	g->floor = 0;
-	g->coordinate = 0;
 	g->texture = 0;
 	g->tmp = 0;
 	g->cubed = 0;
