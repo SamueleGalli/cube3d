@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/26 12:47:00 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/29 10:47:05 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,25 +69,6 @@ void	angle_view(t_general *g)
 	}
 	else
 		continue_angle_view(g);
-}
-
-int	getting_line(t_general *g, int i)
-{
-	g->max_line = 0;
-	g->l = get_next_line(g->fd);
-	while (g->l != 0)
-	{
-		if (g->l != 0 && g->l[0] != 0 \
-		&& g->l[0] != '\n' && g->l[0] != 'F' \
-		&& g->l[0] != 'C' && g->l[0] != 'E' \
-		&& g->l[0] != 'N' && g->l[0] != 'S' \
-		&& g->l[0] != 'W')
-			i++;
-		g->max_line++;
-		free(g->l);
-		g->l = get_next_line(g->fd);
-	}
-	return (i);
 }
 
 void	init_game(t_general *g)

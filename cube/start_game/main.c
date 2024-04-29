@@ -6,11 +6,25 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/26 14:21:41 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/29 11:07:56 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
+
+void	invalid_color(t_general *g)
+{
+	if (g->floor[0] != 0 && g->floor[1] != 0 && g->floor[2] != 0 && \
+		g->sky[0] != 0 && g->sky[1] != 0 && g->sky[2] != 0)
+	{
+		return ;
+	}
+	else
+	{
+		printf("Error\n(invalid color)\n");
+		end_program(g);
+	}
+}
 
 /*
 (bpp) bit per pixel
@@ -22,6 +36,7 @@ valore numerico
 void	start_cube(t_general *g)
 {
 	init_game(g);
+	invalid_color(g);
 	g->posx = (double)g->py + 0.2f;
 	g->posy = (double)g->px + 0.2f;
 	g->mlx = mlx_init();
@@ -47,7 +62,8 @@ void	alloc_g_cont(t_general *g)
 	g->planex = 0.0;
 	g->planey = 0.66;
 	g->movespeed = 0.50;
-	g->rotspeed = 0.50;
+	g->rotspeed = 0.20;
+	g->save = 0;
 }
 
 void	alloc_g(t_general *g, int c, char **v)

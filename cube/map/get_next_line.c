@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:42:21 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/18 18:24:17 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/29 10:22:38 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*ft_save(char *save)
 	return (st);
 }
 
-char	*ft_read_n_save(int fd, char *save)
+char	*ft_read_n_save(int fd, t_general *g)
 {
 	char	*buff;
 	int		readb;
@@ -77,7 +77,7 @@ char	*ft_read_n_save(int fd, char *save)
 	if (buff == NULL)
 		return (NULL);
 	readb = 1;
-	while (ft_strchr(save, '\n') == 0 && readb != 0)
+	while (ft_strchr(g->save, '\n') == 0 && readb != 0)
 	{
 		readb = read(fd, buff, BUFFER_SIZE);
 		if (readb == -1)
@@ -86,23 +86,22 @@ char	*ft_read_n_save(int fd, char *save)
 			return (NULL);
 		}
 		buff[readb] = '\0';
-		save = ft_strjoin(save, buff);
+		g->save = ft_strjoin(g->save, buff);
 	}
 	free(buff);
-	return (save);
+	return (g->save);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int fd, t_general *g)
 {
 	char		*line;
-	static char	*save;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	save = ft_read_n_save(fd, save);
-	if (save == NULL)
+	g->save = ft_read_n_save(fd, g);
+	if (g->save == NULL)
 		return (NULL);
-	line = ft_get_line(save);
-	save = ft_save(save);
+	line = ft_get_line(g->save);
+	g->save = ft_save(g->save);
 	return (line);
 }

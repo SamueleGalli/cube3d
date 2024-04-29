@@ -6,11 +6,28 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/26 14:54:54 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/29 11:05:54 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
+
+int	getting_line(t_general *g, int i)
+{
+	g->max_line = 0;
+	g->l = get_next_line(g->fd, g);
+	while (g->l != 0)
+	{
+		if (g->l != 0 && g->l[0] != 0 && g->l[0] != '\n' && g->l[0] != 'F'
+			&& g->l[0] != 'C' && g->l[0] != 'E' && g->l[0] != 'N'
+			&& g->l[0] != 'S' && g->l[0] != 'W')
+			i++;
+		g->max_line++;
+		free(g->l);
+		g->l = get_next_line(g->fd, g);
+	}
+	return (i);
+}
 
 void	alloc_cube(t_general *g, int j)
 {
@@ -63,7 +80,7 @@ void	alloc_map(t_general *g, int i)
 	g->cubed = (char **)malloc(sizeof(char *) * (i + 1));
 	while (i2 < g->max_line)
 	{
-		g->l = get_next_line(g->fd);
+		g->l = get_next_line(g->fd, g);
 		i2 = while_map(g, i2);
 		free(g->l);
 	}

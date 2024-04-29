@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/26 12:03:24 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/29 11:07:42 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_general
 	int		**texture;
 	int		*data;
 	char	*l;
+	char	*save;
 	char	**coordinate;
 	void	*mlx;
 	void	*win;
@@ -133,6 +134,7 @@ typedef struct s_general
 }			t_general;
 
 int			ft_atoi(const char *str);
+int			getting_line(t_general *g, int i);
 void		flooring(t_general *g);
 void		ceiling(t_general *g);
 void		coordinate(t_general *g);
@@ -170,10 +172,10 @@ int			end_program(t_general *g);
 int			is_valid(t_general *g);
 int			end_mat(char **mat);
 char		*ft_substr(char *s, int start, int len);
-char		*get_next_line(int fd);
+char		*get_next_line(int fd, t_general *g);
 char		*ft_strjoin(char *s1, char *b);
 char		*ft_strchr(char *t, int c);
 char		*ft_get_line(char *save);
 char		*ft_save(char *save);
-char		*ft_read_n_save(int fd, char *save);
+char		*ft_read_n_save(int fd, t_general *g);
 #endif
