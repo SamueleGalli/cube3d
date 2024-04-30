@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 11:38:06 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 15:20:49 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/30 15:45:18 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ void	cont_flood_fill(t_general *g, int i, int j)
 
 void	init_check(int i, int j, t_general *g)
 {
-	if (g->cubed[j + 1][i] != 0 && g->cubed[j + 1][i] == '0' && \
-	j + 1 < g->y_end)
+	if (g->cubed[j + 1][i] != 0 && g->cubed[j + 1][i] == '0' \
+	&& j + 1 < g->y_end)
 	{
 		if (g->cubed[j + 2][i] != 0)
 			g->cubed[j + 1][i] = '1';
@@ -68,21 +68,12 @@ int	check_angle(int i, int j, t_general *g)
 
 int	last_check(t_general *g, int i, int j)
 {
-	while (g->cubed[i] != 0)
+	while (g->cubed[i] != 0 && i < g->y_end)
 	{
 		while (g->cubed[i][j] != 0)
 		{
-			if (g->cubed[i][j] == '0')
-			{
-				if ((j == g->x_end && i == g->y_end) || (j == g->x_end \
-				&& i == 0) || (j == 0 && i == 0) || (j == 0 && i == g->y_end))
-				{
-					if (check_angle(i, j, g) == 1)
-						return (1);
-				}
-				else
-					return (0);
-			}
+			if (i > 0 && i < g->y_end && g->cubed[i][j] == '0')
+				return (0);
 			j++;
 		}
 		j = 0;
@@ -102,7 +93,6 @@ int	is_valid(t_general *g)
 	{
 		if (flood_fill(g, j, i) == 0)
 			return (0);
-		printf("|%s|\n", g->cubed[j]);
 		j++;
 	}
 	return (1);

@@ -6,36 +6,11 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 14:23:25 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/30 15:45:33 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
-
-void	invalid_color(t_general *g)
-{
-	if (g->floor != 0 && g->sky != 0)
-	{
-		if (g->floor[0] != 0 && g->floor[1] != 0 && \
-		g->floor[2] != 0 && g->sky[0] != 0 && g->sky[1] != 0 \
-		&& g->sky[2] != 0)
-		{
-			if (ft_atoi(g->floor[0]) > 255 || ft_atoi(g->floor[1]) > 255 || \
-			ft_atoi(g->floor[2]) > 255 || ft_atoi(g->sky[0]) > 255 \
-			|| ft_atoi(g->sky[1]) > 255 || ft_atoi(g->sky[2]) > 255)
-			{
-				printf("Error\n(rgb color to large))\n");
-				end_program(g);
-			}
-			return ;
-		}
-		else
-		{
-			printf("Error\n(invalid color)\n");
-			end_program(g);
-		}
-	}
-}
 
 /*
 (bpp) bit per pixel

@@ -4,6 +4,7 @@ MLXFLAG = -lmlx -lX11 -lXext -lm -Lcube/minilibx-linux
 NAME = cube3D
 SRC = 	cube/start_game/main.c \
 		cube/start_game/start_game.c \
+		cube/start_game/realloching.c \
 		cube/map/flood_fill.c \
 		cube/map/flood_fill2.c \
 		cube/map/alloc_map.c \
@@ -28,7 +29,8 @@ SRC = 	cube/start_game/main.c \
    		cube/movements/key.c \
 		cube/movements/key_pressed.c \
 		cube/free_and_error/free.c \
-		cube/free_and_error/error.c
+		cube/free_and_error/error.c \
+		cube/free_and_error/error2.c 
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 14:46:10 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/30 15:47:18 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_general
 	int		fd;
 	int		c;
 	int		x;
+	int		size_mat;
 	int		y;
 	int		px;
 	int		py;
@@ -86,6 +87,7 @@ typedef struct s_general
 	int		celly;
 	int		tx;
 	int		ty;
+	int		i_fc;
 	int		i_texture;
 	int		floortexture;
 	int		ceilingtexture;
@@ -137,10 +139,10 @@ typedef struct s_general
 }			t_general;
 
 void		east(t_general *g);
+void		standard_lenght(t_general *g, int max);
 void		north(t_general *g);
 void		south(t_general *g);
 void		west(t_general *g);
-void		last_zero(int j, int sign, int i, t_general *g);
 void		init_check(int i, int j, t_general *g);
 void		flooring(t_general *g);
 void		ceiling(t_general *g);
@@ -160,6 +162,7 @@ void		init_game(t_general *g);
 void		alloc_cube(t_general *g, int j);
 void		alloc_map(t_general *g, int i);
 void		copy_cubed(t_general *g);
+void		invalid_color(t_general *g);
 void		free_matrix(char **mat);
 void		check_max_p(t_general *g, int i);
 void		check_invalid_char(t_general *g, int i);

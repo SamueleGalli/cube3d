@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 11:37:44 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 15:21:55 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/30 12:27:35 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,17 @@
 
 void	shorter_flood_fill(t_general *g, int j, int i)
 {
-	while (g->cubed[j][i] != '0' && g->cubed[j][i] != '1')
+	while (g->cubed[j][i] != 0 && (g->cubed[j][i] == ' ' \
+	|| g->cubed[j][i] == '\n'))
 		i++;
-	while (g->cubed[j][i] == '1')
+	while (g->cubed[j][i] != 0 && g->cubed[j][i] != '1')
 		i++;
+	if (g->cubed[j][i] != 0)
+		g->cubed[j][i] = '1';
 	while (g->cubed[j][i] != 0)
 	{
-		g->cubed[j][i] = '1';
-		if (g->cubed[j][i + 1] != 0 && g->cubed[j + 1][i] != 0 && \
-		j > 0 && j < g->y_end - 1 && i > 0 && i < g->x_end - 1)
+		if (j > 0 && i > 0 && i < g->x_end && \
+		g->cubed[j][i + 1] != 0)
 			init_check(i, j, g);
 		i++;
 	}

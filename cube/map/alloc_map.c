@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 12:15:59 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/30 11:51:18 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	while_map(t_general *g, int i)
 	&& g->l[0] != 'C' && g->l[0] != 'E' && g->l[0] != 'N' \
 	&& g->l[0] != 'S' && g->l[0] != 'W')
 	{
+		if (g->size_mat < ft_strlen(g->l) + 1)
+			g->size_mat = ft_strlen(g->l) + 1;
 		g->cubed[g->i] = (char *)malloc(sizeof(char) * (ft_strlen(g->l) + 1));
 		check_max_p(g, 0);
 		check_invalid_char(g, 0);
@@ -82,6 +84,7 @@ void	alloc_map(t_general *g, int i)
 
 	i2 = 0;
 	g->i = 0;
+	g->size_mat = 0;
 	g->cubed = (char **)malloc(sizeof(char *) * (i + 1));
 	while (i2 < g->max_line)
 	{

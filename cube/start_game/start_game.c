@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 10:47:05 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/04/30 11:58:48 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	init_game(t_general *g)
 	i = getting_line(g, 0);
 	g->fd = open(g->v[1], O_RDONLY);
 	alloc_map(g, i);
+	standard_lenght(g, i);
 	coordinate_player(g);
 	angle_view(g);
 	copy_cubed(g);
