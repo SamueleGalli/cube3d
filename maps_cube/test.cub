@@ -1,22 +1,11 @@
-F 220,100,40
+EA insert_texture
+WE insert_texture
+SO insert_texture
+NO insert_texture
 
-C 255,30,80
-
-EA ./cube/image/WallR.xpm
-WE ./cube/image/WallL.xpm
-SO ./cube/image/WallD.xpm
-NO ./cube/image/WallU.xpm
+F R,G,B
+C R,G,B
 
 11111
-10001
-10S01
-10001
-10001
-10001
-11001
-10001
-10001
-10001
-10001
-100010
+1MAP1
 11111

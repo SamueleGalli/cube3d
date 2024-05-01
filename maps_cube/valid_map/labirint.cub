@@ -1,11 +1,10 @@
-F 220,170,0
-
-C 255,10,0
-
 EA ./cube/image/WallR.xpm
 WE ./cube/image/WallL.xpm
 SO ./cube/image/WallD.xpm
 NO ./cube/image/WallU.xpm
+
+F 220,170,0
+C 255,10,0
 
 11111111111111
 10000000000001

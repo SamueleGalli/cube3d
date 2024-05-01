@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 13:50:02 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/29 15:23:30 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/01 18:08:08 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,6 @@ void	texture(t_general *g)
 	if (g->floor == 0 || g->sky == 0)
 	{
 		printf("Error\n(missing floor/sky color)\n");
-		end_program(g);
-	}
-	if (g->east == 0 || g->south == 0 || g->west == 0 || g->north == 0)
-	{
-		printf("Error\n(missing coordinate/s)\n");
 		end_program(g);
 	}
 	else

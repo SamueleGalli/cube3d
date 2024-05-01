@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/30 15:47:18 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/01 18:01:17 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ typedef struct s_general
 	int		y;
 	int		px;
 	int		py;
+	int		check_t;
+	int		check_fc;
 	int		x_end;
 	int		y_end;
 	int		color;
@@ -138,6 +140,7 @@ typedef struct s_general
 	float	floory;
 }			t_general;
 
+void		map_validity(t_general *g);
 void		east(t_general *g);
 void		standard_lenght(t_general *g, int max);
 void		north(t_general *g);

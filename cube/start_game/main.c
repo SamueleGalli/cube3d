@@ -53,6 +53,8 @@ void	alloc_g_cont(t_general *g)
 	g->south = 0;
 	g->east = 0;
 	g->west = 0;
+	g->check_fc = 0;
+	g->check_t = 0;
 }
 
 void	alloc_g(t_general *g, int c, char **v)

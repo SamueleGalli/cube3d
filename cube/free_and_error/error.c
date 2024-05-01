@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:53:03 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/30 15:45:55 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/01 17:59:59 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,7 @@ int	cont_map_error(t_general *g)
 
 int	map_error(t_general *g)
 {
-	if (g->x_end == -1 && g->y_end == -1)
-	{
-		printf("Error\n(map must be not empty)");
-		return (1);
-	}
-	else if (g->invalid_maxp > 1)
+	if (g->invalid_maxp > 1)
 	{
 		printf("Error\n(too many players)\n");
 		return (1);

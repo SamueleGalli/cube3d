@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/30 11:58:48 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/01 18:24:29 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,17 +37,17 @@ void	continue_angle_view(t_general *g)
 {
 	if (g->p_view == 'E')
 	{
-		g->dirx = 1;
-		g->diry = 0;
-		g->planex = 0;
-		g->planey = 0.66;
+		g->dirx = 0;
+		g->diry = 1;
+		g->planex = -0.66;
+		g->planey = 0;
 	}
 	else if (g->p_view == 'W')
 	{
-		g->dirx = -1;
-		g->diry = 0;
-		g->planex = 0;
-		g->planey = -0.66;
+		g->dirx = 0;
+		g->diry = -1;
+		g->planex = 0.66;
+		g->planey = 0;
 	}
 }
 
@@ -55,17 +55,17 @@ void	angle_view(t_general *g)
 {
 	if (g->p_view == 'N')
 	{
-		g->dirx = 0;
-		g->diry = -1;
-		g->planex = 0.66;
-		g->planey = 0;
+		g->dirx = -1;
+		g->diry = 0;
+		g->planex = 0;
+		g->planey = -0.66;
 	}
 	else if (g->p_view == 'S')
 	{
-		g->dirx = 0;
-		g->diry = 1;
-		g->planex = -0.66;
-		g->planey = 0;
+		g->dirx = 1;
+		g->diry = 0;
+		g->planex = 0;
+		g->planey = 0.66;
 	}
 	else
 		continue_angle_view(g);

@@ -34,6 +34,7 @@ void	east(t_general *g)
 	while (g->l[i] != '\0' && g->l[i] != '\n')
 		g->east[j++] = g->l[i++];
 	g->east[j] = '\0';
+	g->check_t++;
 }
 
 void	north(t_general *g)
@@ -58,6 +59,7 @@ void	north(t_general *g)
 	while (g->l[i] != '\0' && g->l[i] != '\n')
 		g->north[j++] = g->l[i++];
 	g->north[j] = '\0';
+	g->check_t++;
 }
 
 void	south(t_general *g)
@@ -82,6 +84,7 @@ void	south(t_general *g)
 	while (g->l[i] != '\0' && g->l[i] != '\n')
 		g->south[j++] = g->l[i++];
 	g->south[j] = '\0';
+	g->check_t++;
 }
 
 void	west(t_general *g)
@@ -106,4 +109,5 @@ void	west(t_general *g)
 	while (g->l[i] != '\0' && g->l[i] != '\n')
 		g->west[j++] = g->l[i++];
 	g->west[j] = '\0';
+	g->check_t++;
 }

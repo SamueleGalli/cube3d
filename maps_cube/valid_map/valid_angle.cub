@@ -1,12 +1,10 @@
-F 220,100,40
-
-C 255,30,80
-
 EA ./cube/image/WallR.xpm
 WE ./cube/image/WallL.xpm
 SO ./cube/image/WallD.xpm
 NO ./cube/image/WallU.xpm
 
+F 220,100,40
+C 255,30,80
 
 0111110
 1000W01
