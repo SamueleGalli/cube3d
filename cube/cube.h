@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/01 18:01:17 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/02 16:23:41 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,15 @@ typedef struct s_general
 	int		tx;
 	int		ty;
 	int		i_fc;
+	int		i_cube;
 	int		i_texture;
 	int		floortexture;
 	int		ceilingtexture;
 	int		p;
+	int		max_len;
 	int		floortexx;
 	int		floortexy;
+	int		in;
 	int		checkerboardpattern;
 	double	wallx;
 	double	step;
@@ -140,9 +143,13 @@ typedef struct s_general
 	float	floory;
 }			t_general;
 
+void		new_line_or_space(t_general *g);
+void		mapping(t_general *g, int max);
+void		escape_space(t_general *g);
+void		cont_alloc_map(t_general *g, int i);
 void		map_validity(t_general *g);
 void		east(t_general *g);
-void		standard_lenght(t_general *g, int max);
+void		standard_lenght(t_general *g, int i);
 void		north(t_general *g);
 void		south(t_general *g);
 void		west(t_general *g);
@@ -170,6 +177,7 @@ void		free_matrix(char **mat);
 void		check_max_p(t_general *g, int i);
 void		check_invalid_char(t_general *g, int i);
 void		recopy(t_general *g);
+void		other_color(t_general *g, int t);
 
 size_t		ft_strlen_g(const char *s);
 
@@ -188,6 +196,8 @@ int			manage_key(int key, t_general *g);
 int			end_program(t_general *g);
 int			is_valid(t_general *g);
 int			end_mat(char **mat);
+int			check_newline(char *l);
+int			checking_1_0(t_general *g);
 
 char		*ft_substr(char *s, int start, int len);
 char		*get_next_line(int fd, t_general *g);

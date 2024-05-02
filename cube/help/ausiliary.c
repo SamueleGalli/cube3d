@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 10:36:48 by sgalli            #+#    #+#             */
-/*   Updated: 2024/04/30 12:03:34 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/02 12:03:42 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,11 @@ void	recopy(t_general *g)
 	g->cubed[g->x] = 0;
 	g->x = 0;
 	g->y = 0;
+}
+
+void	escape_space(t_general *g)
+{
+	while (g->l[g->i_fc] != '\0' && g->l[g->i_fc] != '\n' && \
+	g->l[g->i_fc] == ' ')
+		g->i_fc++;
 }

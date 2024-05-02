@@ -1,8 +1,1 @@
-- chekkare mappe non valide:
-1) invalid_wall la apre flood fill da modificare
-- flood fill da sistemare leakka con another_mandatory_map.cub
-rgb too small large sono strani darci un occhiata
-ordine file/texture/rgb e mappa senno e sbagliato
-l'ordine e texture poi rgb e poi mappa
-file con 3 e non 4 texture
-assicurarzi l'orientamento delle texture north south easth e weast
+- controllare valid_fill/space_in_map

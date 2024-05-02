@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:46:02 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/01 18:08:53 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/02 13:00:13 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,19 @@ void	invalid_color(t_general *g)
 
 void	map_validity(t_general *g)
 {
-	if (g->check_fc != 2 || g->check_t != 4)
-	{
-		if (g->check_t > 0)
-			printf("Error\n(missing texture/s)\n");
-		else if (g->east == 0 && g->south == 0 && g->west == 0 && g->north == 0)
-			printf("Error\n(no texture found)\n");
-		else
-		{
-			printf("Error\n(invalid corpe map indentation)\n");
-			printf("The correct one should be:\n");
-			printf("1)Texture\n2)(C or F) R,G,B\n3)The map");
-		}
-		end_program(g);
-	}
 	if (g->cubed == 0)
 	{
 		printf("Error\n(map must be not empty)");
+		end_program(g);
+	}
+	else if (g->east == 0 && g->south == 0 && g->west == 0 && g->north == 0)
+	{
+		printf("Error\n(no texture found)\n");
+		end_program(g);
+	}
+	else if (g->south == 0 || g->west == 0 || g->north == 0 || g->east == 0)
+	{
+		printf("Error\n(missing texture/s)\n");
 		end_program(g);
 	}
 }

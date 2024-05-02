@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/01 18:44:09 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/02 15:27:08 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,11 @@
 int	getting_line(t_general *g, int i)
 {
 	g->max_line = 0;
+	g->max_len = 0;
 	g->l = get_next_line(g->fd, g);
 	while (g->l != 0)
 	{
-		if (g->l != 0 && g->l[0] != 0 && g->l[0] != '\n' && g->l[0] != 'F'
-			&& g->l[0] != 'C' && g->l[0] != 'E' && g->l[0] != 'N'
-			&& g->l[0] != 'S' && g->l[0] != 'W')
+		if (checking_1_0(g) == 1)
 			i++;
 		g->max_line++;
 		free(g->l);
@@ -42,73 +41,53 @@ void	alloc_cube(t_general *g, int j)
 	g->cubed[j][i] = '\0';
 }
 
-void	cont_alloc_map(t_general *g)
+void	while_map(t_general *g, int max)
 {
-	if (g->l != 0 && g->l[0] == 'F' && g->l[1] == ' ' && g->check_t == 4)
-		flooring(g);
-	else if (g->l != 0 && g->l[0] == 'C' && g->l[1] == ' ' && g->check_t == 4)
-		ceiling(g);
-	else if (g->l != 0 && g->l[0] == 'E' && g->l[1] == 'A' \
-	&& g->l[2] == ' ')
-		east(g);
-	else if (g->l != 0 && g->l[0] == 'N' && g->l[1] == 'O' \
-	&& g->l[2] == ' ')
-		north(g);
-	else if (g->l != 0 && g->l[0] == 'S' && g->l[1] == 'O' \
-	&& g->l[2] == ' ')
-		south(g);
-	else if (g->l != 0 && g->l[0] == 'W' && g->l[1] == 'E' \
-	&& g->l[2] == ' ')
-		west(g);
+	if (g->l != 0 && g->l[g->i_cube] != '\n' && g->l[g->i_cube] != '\0' && \
+	(g->l[g->i_cube] == '1' || g->l[g->i_cube] == '0'))
+		mapping(g, max);
 	else
 	{
-		printf("Error\n(texture or color with invalid alias)\n");
-		printf("Try somthing like (WE) (EA) (SO) (NO) or (F) (C) \n");
-		end_program(g);
+		if (g->in > 0)
+			g->in++;
+		cont_alloc_map(g, g->i_cube);
 	}
 }
 
-int	while_map(t_general *g, int i, int max)
+int	shorter(t_general *g, int j, int i)
 {
-	if (g->l[0] == '\n')
-		return (++i);
-	else if ((g->l != 0 && g->l[0] != '\n' && g->check_fc == 2 \
-	&& g->check_t == 4) && (g->l[0] == '1' \
-	|| g->l[0] == '0' || g->l[0] == ' ' || g->l[0] == '\t'))
+	g->l = get_next_line(g->fd, g);
+	if (g->l[g->i_cube] != '\n' && g->l[g->i_cube] != '\0')
 	{
-		if (g->cubed == 0)
-			g->cubed = (char **)malloc(sizeof(char *) \
-			* (max + 1));
-		if (g->size_mat < ft_strlen(g->l) + 1)
-			g->size_mat = ft_strlen(g->l) + 1;
-		g->cubed[g->i] = (char *)malloc(sizeof(char) * (ft_strlen(g->l) + 1));
-		check_max_p(g, 0);
-		check_invalid_char(g, 0);
-		alloc_cube(g, g->i);
-		g->i++;
+		while (g->l[g->i_cube] != '\0' && g->l[g->i_cube] != '\n' \
+		&& g->l[g->i_cube] == ' ')
+			g->i_cube++;
+		while_map(g, i);
+		if (i > 0 && g->i == i)
+			g->cubed[g->i] = NULL;
 	}
-	else
-		cont_alloc_map(g);
-	i++;
-	return (i);
+	j++;
+	if (g->in > 1)
+		g->in++;
+	if (g->in > 0 && g->in < i)
+		new_line_or_space(g);
+	free(g->l);
+	g->l = 0;
+	g->i_cube = 0;
+	return (j);
 }
 
 void	alloc_map(t_general *g, int i)
 {
-	int	i2;
+	int	j;
 
-	i2 = 0;
+	j = 0;
 	g->i = 0;
+	g->i_cube = 0;
 	g->size_mat = 0;
-	while (i2 < g->max_line)
-	{
-		g->l = get_next_line(g->fd, g);
-		i2 = while_map(g, i2, i);
-		free(g->l);
-		g->l = 0;
-	}
+	while (j < g->max_line)
+		j = shorter(g, j, i);
 	map_validity(g);
-	g->cubed[g->i] = NULL;
 	g->x_end = (ft_strlen(g->cubed[0]) - 1);
 	g->y_end = (ft_mat_len(g->cubed) - 1);
 }
