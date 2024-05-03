@@ -6,65 +6,30 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 11:38:06 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/02 16:38:06 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/03 12:46:43 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-void	cont_flood_fill(t_general *g, int i, int j)
+int	flood_fill(t_general *g, int j, int i)
 {
-	if (g->cubed[j][i + 1] != 0 && g->cubed[j][i + 1] == '0' && \
-	i + 1 < g->x_end)
+	i = 0;
+	if (j == 0 || j == g->y_end - 1)
 	{
-		if (g->cubed[j][i + 2] != 0)
-			g->cubed[j][i + 1] = '1';
-		init_check(i + 1, j, g);
-	}
-	if (i > 1 && g->cubed[j][i - 1] != 0 && g->cubed[j][i - 1] == '0' && \
-	i - 1 > 0)
-	{
-		if (g->cubed[j][i - 2] != 0)
-			g->cubed[j][i - 1] = '1';
-		init_check(i - 1, j, g);
-	}
-}
-
-void	init_check(int i, int j, t_general *g)
-{
-	if (g->cubed[j + 1][i] != 0 && g->cubed[j + 1][i] == '0' \
-	&& j + 1 < g->y_end)
-	{
-		if (g->cubed[j + 2][i] != 0)
-			g->cubed[j + 1][i] = '1';
-		init_check(i, j + 1, g);
-	}
-	if (j > 2 && g->cubed[j - 1][i] != 0 && g->cubed[j - 1][i] == '0' && \
-	j - 1 > 0)
-	{
-		if (g->cubed[j - 2][i] != 0)
-			g->cubed[j - 1][i] = '1';
-		init_check(i, j - 1, g);
-	}
-	cont_flood_fill(g, i, j);
-}
-
-int	last_check(t_general *g, int i, int j)
-{
-	/*for (j = 0; j < g->y_end; j++)
-	{
-		printf("g->cubed[j] = %s\n", g->cubed[j]);
-	}*/
-	while (g->cubed[i] != 0 && i < g->y_end)
-	{
-		while (g->cubed[i][j] != 0)
+		while (g->cubed[j][i] != 0)
 		{
-			if (i > 0 && i < g->y_end && g->cubed[i][j] == '0')
+			if (g->cubed[j][i] == '0' && i > 0 && i < g->x_end - 1)
 				return (0);
-			j++;
+			i++;
 		}
-		j = 0;
-		i++;
+	}
+	else
+	{
+		if (g->cubed[j][ft_strlen(g->cubed[j]) - 1] == '0' || \
+		g->cubed[j][0] == '0')
+			return (0);
+		return (1);
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/02 12:55:15 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/03 12:21:59 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	start_cube(t_general *g)
 	g->data = (int *)mlx_get_data_addr(g->img, &g->bpp, &g->size_l, &g->endian);
 	mlx_loop_hook(g->mlx, update_cube, g);
 	mlx_hook(g->win, 17, 1L << 17, end_program, g);
-	mlx_key_hook(g->win, manage_key, g);
+	mlx_hook(g->win, 2, 1L << 0, manage_key, g);
 	mlx_loop(g->mlx);
 }
 
@@ -55,7 +55,6 @@ void	alloc_g_cont(t_general *g)
 	g->east = 0;
 	g->west = 0;
 	g->check_fc = 0;
-	g->check_t = 0;
 }
 
 void	alloc_g(t_general *g, int c, char **v)

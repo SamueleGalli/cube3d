@@ -2,7 +2,7 @@
 EA ./cube/image/WallR.xpm
 WE ./cube/image/Wal0L.xpm
 SO ./cube/image/WallD.xpm
-NO ./cube/image/WallUs.xpm
+NO ./cube/essere/mangiare/bere.xpm
 
 F 220,100,0
 C 255,30,0

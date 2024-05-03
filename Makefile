@@ -6,7 +6,6 @@ SRC = 	cube/start_game/main.c \
 		cube/start_game/start_game.c \
 		cube/start_game/realloching.c \
 		cube/map/flood_fill.c \
-		cube/map/flood_fill2.c \
 		cube/map/alloc_map.c \
 		cube/map/alloc_map2.c \
 		cube/map/get_next_line.c \
