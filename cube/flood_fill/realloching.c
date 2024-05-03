@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:58:59 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/03 10:29:11 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/03 14:43:55 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	stadardize(t_general *g, int k, int j, int v)
 	while (k < g->max_len)
 	{
 		if (g->cubed[j][k] == ' ' || g->cubed[j][k] == '\n')
-			g->tmp[j][k++] = '1';
+			g->tmp[j][k++] = 'F';
 		else if (g->cubed[j][k] == '\0')
 		{
 			v = k - 1;
 			while (k < g->max_len)
-				g->tmp[j][k++] = g->cubed[j][v];
+				g->tmp[j][k++] = 'F';
 		}
 		else
 		{
@@ -31,6 +31,7 @@ void	stadardize(t_general *g, int k, int j, int v)
 		}
 	}
 	g->tmp[j][k] = '\0';
+	printf("g->tmp[j] = %s\n", g->tmp[j]);
 }
 
 void	realloc_cube_standardize(t_general *g, int j, int max)

@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 11:38:06 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/03 12:46:43 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/03 15:15:49 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ int	flood_fill(t_general *g, int j, int i)
 	{
 		while (g->cubed[j][i] != 0)
 		{
-			if (g->cubed[j][i] == '0' && i > 0 && i < g->x_end - 1)
+			if ((i > 0 && i < g->x_end - 1) && \
+			(g->cubed[j][i] == '0' || g->cubed[j][i] == 'F'))
 				return (0);
 			i++;
 		}
