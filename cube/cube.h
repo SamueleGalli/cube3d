@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:17:58 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/03 11:59:05 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:05:16 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_general
 	int		width;
 	int		height;
 	int		rebuf;
+	int		filled;
 	int		j;
 	int		i;
 	int		max_line;
@@ -166,6 +167,7 @@ int			is_valid(t_general *g);
 int			end_mat(char **mat);
 int			check_newline(char *l);
 int			checking_1_0(t_general *g);
+int			check_f(t_general *g, int j, int i);
 
 char		*ft_substr(char *s, int start, int len);
 char		*get_next_line(int fd, t_general *g);

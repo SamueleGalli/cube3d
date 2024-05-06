@@ -6,13 +6,13 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 11:58:59 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/03 14:43:55 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/06 17:52:38 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../cube.h"
 
-void	stadardize(t_general *g, int k, int j, int v)
+void	stadardize(t_general *g, int k, int j)
 {
 	while (k < g->max_len)
 	{
@@ -20,7 +20,6 @@ void	stadardize(t_general *g, int k, int j, int v)
 			g->tmp[j][k++] = 'F';
 		else if (g->cubed[j][k] == '\0')
 		{
-			v = k - 1;
 			while (k < g->max_len)
 				g->tmp[j][k++] = 'F';
 		}
@@ -31,7 +30,6 @@ void	stadardize(t_general *g, int k, int j, int v)
 		}
 	}
 	g->tmp[j][k] = '\0';
-	printf("g->tmp[j] = %s\n", g->tmp[j]);
 }
 
 void	realloc_cube_standardize(t_general *g, int j, int max)
@@ -66,7 +64,7 @@ void	standard_lenght(t_general *g, int i)
 	{
 		k = 0;
 		g->tmp[j] = (char *)malloc(sizeof(char) * (g->max_len + 1));
-		stadardize(g, k, j, 0);
+		stadardize(g, k, j);
 		j++;
 	}
 	g->tmp[j] = 0;

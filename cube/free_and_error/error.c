@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:53:03 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/02 14:06:22 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:15:43 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,7 @@ int	check_error(char **v, int i)
 
 int	cont_map_error(t_general *g)
 {
-	if (is_valid(g) == 0)
-	{
-		printf("Error\n(map not closed by walls)");
-		return (1);
-	}
-	else if (g->in == -1)
+	if (g->in == -1)
 	{
 		printf("Error\n(is not allowed newline in map)\n");
 		end_program(g);
@@ -82,6 +77,11 @@ int	cont_map_error(t_general *g)
 	{
 		printf("Error\n(is not allowed space in map)\n");
 		end_program(g);
+	}
+	else if (is_valid(g) == 0)
+	{
+		printf("Error\n(map not closed by walls)");
+		return (1);
 	}
 	return (0);
 }

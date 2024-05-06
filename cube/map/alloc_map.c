@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/02 15:27:08 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:07:39 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,7 @@ void	while_map(t_general *g, int max)
 	(g->l[g->i_cube] == '1' || g->l[g->i_cube] == '0'))
 		mapping(g, max);
 	else
-	{
-		if (g->in > 0)
-			g->in++;
 		cont_alloc_map(g, g->i_cube);
-	}
 }
 
 int	shorter(t_general *g, int j, int i)
@@ -88,6 +84,5 @@ void	alloc_map(t_general *g, int i)
 	while (j < g->max_line)
 		j = shorter(g, j, i);
 	map_validity(g);
-	g->x_end = (ft_strlen(g->cubed[0]) - 1);
 	g->y_end = (ft_mat_len(g->cubed) - 1);
 }

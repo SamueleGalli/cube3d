@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 11:42:06 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/03 14:36:10 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:12:41 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,14 @@ void	new_line_or_space(t_general *g)
 	int	i;
 
 	i = 0;
-	if (g->l != 0 && g->l[i] == '\n')
-		g->in = -1;
-	else if (g->l != 0 && g->l[i] == ' ')
+	while (g->l[i] != 0)
 	{
-		while (g->l[i] != '\0' && g->l[i] == ' ')
-			i++;
-		if (g->l[i] == '\n')
-			g->in = -2;
+		if (g->l[i] == '1' || g->l[i] == '0')
+			return ;
+		i++;
 	}
+	if (g->l[0] == ' ')
+		g->in = -2;
+	else if (g->l[0] == '\n')
+		g->in = -1;
 }
