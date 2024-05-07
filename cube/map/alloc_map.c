@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:29:45 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/06 18:07:39 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/07 14:28:30 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	while_map(t_general *g, int max)
 
 int	shorter(t_general *g, int j, int i)
 {
+	if (g->in > 0)
+		g->in++;
 	g->l = get_next_line(g->fd, g);
 	if (g->l[g->i_cube] != '\n' && g->l[g->i_cube] != '\0')
 	{
@@ -63,9 +65,7 @@ int	shorter(t_general *g, int j, int i)
 			g->cubed[g->i] = NULL;
 	}
 	j++;
-	if (g->in > 1)
-		g->in++;
-	if (g->in > 0 && g->in < i)
+	if (g->in >= 0 && g->in <= i)
 		new_line_or_space(g);
 	free(g->l);
 	g->l = 0;

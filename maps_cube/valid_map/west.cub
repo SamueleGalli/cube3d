@@ -1,5 +1,5 @@
-WE ./cube/image/WallR.xpm
-EA ./cube/image/WallL.xpm
+WE ./cube/image/WallL.xpm
+EA ./cube/image/WallR.xpm
 SO ./cube/image/WallD.xpm
 NO ./cube/image/WallU.xpm
 

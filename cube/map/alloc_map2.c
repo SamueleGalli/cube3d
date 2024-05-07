@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 11:42:06 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/06 18:12:41 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/07 14:28:26 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ void	mapping(t_general *g, int max)
 		printf("map must be at the end)\n");
 		end_program(g);
 	}
-	if (g->in == 0)
-		g->in++;
+	if (g->in == -5)
+		g->in = 1;
 }
 
 void	new_line_or_space(t_general *g)

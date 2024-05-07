@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 11:02:23 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/06 18:05:32 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/07 13:02:58 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ void	alloc_g_cont(t_general *g)
 {
 	g->x = 0;
 	g->y = 0;
-	g->in = 0;
+	g->in = -5;
 	g->p_view = 0;
-	g->dirx = -1.0;
-	g->diry = 0.0;
 	g->planex = 0.0;
 	g->planey = 0.66;
 	g->movespeed = 0.50;

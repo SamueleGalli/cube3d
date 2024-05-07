@@ -6,7 +6,7 @@
 /*   By: sgalli <sgalli@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 12:18:21 by sgalli            #+#    #+#             */
-/*   Updated: 2024/05/06 17:26:41 by sgalli           ###   ########.fr       */
+/*   Updated: 2024/05/07 12:29:26 by sgalli           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,17 @@ void	angle_view(t_general *g)
 {
 	if (g->p_view == 'N')
 	{
-		g->dirx = -1;
-		g->diry = 0;
-		g->planex = 0;
-		g->planey = -0.66;
-	}
-	else if (g->p_view == 'S')
-	{
 		g->dirx = 1;
 		g->diry = 0;
 		g->planex = 0;
 		g->planey = 0.66;
+	}
+	else if (g->p_view == 'S')
+	{
+		g->dirx = -1;
+		g->diry = 0;
+		g->planex = 0;
+		g->planey = -0.66;
 	}
 	else
 		continue_angle_view(g);
